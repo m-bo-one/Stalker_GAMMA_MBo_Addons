@@ -33,8 +33,8 @@
 		<actor_dialog>debt_pay_off</actor_dialog>
 		<actor_dialog>buy_route</actor_dialog>
 		<!--actor_dialog>information_about_stash_barmen</actor_dialog-->
-        <!--actor_dialog>information_about_stash_barmen1</actor_dialog-->	
-		<!---------- mlr ----------->		
+        <!--actor_dialog>information_about_stash_barmen1</actor_dialog-->
+		<!---------- mlr ----------->
         <actor_dialog>dm_broker_dialog</actor_dialog>
 		<actor_dialog>bar_barmen_minigame_21_point_dialog</actor_dialog>
         <actor_dialog>actor_break_dialog</actor_dialog>
@@ -43,7 +43,7 @@
 		<actor_dialog>devushka_help</actor_dialog>
 	</specific_character>
 
-		
+
 <!-- GARIK -->
     <specific_character id="bar_visitors_garik_stalker_guard" team_default = "1">
         <name>bar_bar_guard_name</name>
@@ -63,14 +63,14 @@
         wpn_ak74 \n
         ammo_5.45x39_fmj \n
 		</supplies>
-		
+
 #include "gameplay\character_criticals.xml"
 #include "gameplay\character_dialogs.xml"
-	
+
         <actor_dialog>actor_break_dialog</actor_dialog>
     </specific_character>
 
-	
+
 <!-- ZHORIK -->
     <specific_character id="bar_visitors_zhorik_stalker_guard2" team_default = "1">
 		<name>bar_bar_guard2_name</name>
@@ -94,7 +94,7 @@
 #include "gameplay\character_dialogs.xml"
 	</specific_character>
 
-	
+
 <!-- Voronin (Duty Leader) -->
     <specific_character id="bar_dolg_leader" team_default = "1">
 		<name>bar_voronin_name</name>
@@ -140,7 +140,7 @@
 		<actor_dialog>actor_break_dialog</actor_dialog>
     </specific_character>
 
-	
+
 <!-------------------------- KITSENKO ---------------------- -->
     <specific_character id="bar_zastava_2_commander" team_default = "1">
 		<name>bar_kicenko_name</name>
@@ -197,7 +197,7 @@
 #include "gameplay\character_dialogs_no_guide.xml"
     </specific_character>
 
-	
+
 <!-------------------------- ZONEGUARD ---------------------- -->
     <specific_character id="bar_dolg_general_zoneguard_stalker" team_default = "1">
 		<name>GENERATE_NAME_stalker</name>
@@ -256,7 +256,7 @@
 #include "gameplay\supplies\character_drugs.xml"
 		</supplies>
 #include "gameplay\character_criticals.xml"
-		
+
 		<actor_dialog>dm_init_trader</actor_dialog>
 		<actor_dialog>petrenko_questlines_about_dialog</actor_dialog>
 		<actor_dialog>drx_sl_bar_dolg_general_petrenko_stalker_game_start_dialog_1</actor_dialog>
@@ -272,7 +272,7 @@
 		<actor_dialog>armor_exchange_insider_duty</actor_dialog>
     </specific_character>
 
-	
+
 <!-- Mangun (Duty Mechanic) Character Description -->
     <specific_character id="bar_visitors_stalker_mechanic" team_default = "1">
 		<name>bar_visitors_stalker_mechanic_name</name>
@@ -294,8 +294,8 @@
 		<actor_dialog>dm_init_mechanic</actor_dialog>
 		<start_dialog>bar_visitors_stalker_mechanic_start</start_dialog>
 		<!-- mlr -->
-        <actor_dialog>story_dolg_m</actor_dialog>	
-		<!-- mlr -->			
+        <actor_dialog>story_dolg_m</actor_dialog>
+		<!-- mlr -->
 		<actor_dialog>drx_sl_task_completed_dialog</actor_dialog>
 		<actor_dialog>dm_ordered_task_completed_dialog</actor_dialog>
 		<actor_dialog>drx_sl_bar_visitors_stalker_mechanic_meet_dialog</actor_dialog>
@@ -310,26 +310,26 @@
 
     </specific_character>
 
-	
+
 <!-- Duty bodyguard -->
 	<specific_character id="bodyguard_duty_medic_bar_general" team_default="1">
 		<name>GENERATE_NAME_sergeant</name>
 		<icon>ui_inGame2_Dolg_3</icon>
 		<map_icon x="1" y="0"></map_icon>
 		<bio>An experienced stalker. No detailed information is available.</bio>
-		
+
 		<class>bodyguard_duty_medic_bar_general</class>
-		<community>dolg</community> 
+		<community>dolg</community>
 		<terrain_sect>stalker_terrain</terrain_sect>
 		<snd_config>characters_voice\human\dolg_1\</snd_config>
-		
+
 		<rank>3000</rank>
 		<money min="1000" max="2000" infinitive="0"/>
 		<reputation>900</reputation>
-		
+
 		<visual>actors\stalker_dolg\stalker_dolg_3</visual>
 		<supplies>
-		
+
 		[spawn] \n
 		wpn_abakan = 1 \n
 		ammo_5.45x39_ap = 1 \n
@@ -341,26 +341,26 @@
 		<actor_dialog>actor_break_dialog</actor_dialog>
 	</specific_character>
 
-	
+
 <!-- Snitch (Informer) at the Bar -->
 	<specific_character id="bar_informator_mlr" team_default="1">
 		<name>bar_informator_mlr_name</name>
 		<icon>ui_inGame2_bandit_4</icon>
 		<map_icon x="1" y="0"></map_icon>
 		<bio>An experienced stalker. No detailed information is available.</bio>
-		
+
 		<class>bar_informator_mlr</class>
 		<community>trader</community>
 		<terrain_sect>stalker_terrain</terrain_sect>
 		<!-- <snd_config>characters_voice\human\stalker_3\</snd_config>-->
-		
+
 		<rank>5000</rank>
 		<money min="100" max="10000" infinitive="0"/>
 		<reputation>1000</reputation>
-		
+
 		<visual>actors\stalker_bandit\stalker_bandit_4</visual>
 		<supplies>
-		
+
 		[spawn] \n
 		wpn_beretta \n
 		ammo_9x19_fmj = 1 \n
@@ -391,10 +391,10 @@
 		<community>dolg</community>
 		<terrain_sect>stalker_terrain</terrain_sect>
 		<money min="100000" max="100000" infinitive="1"/>
-		
+
 		<rank>1000</rank>
 		<reputation>1500</reputation>
- 
+
 		<visual>actors\stalker_dolg\stalker_dolg_2a_face_medicine</visual>
 		<snd_config>characters_voice\human\dolg_1\</snd_config>
 		<crouch_type>0</crouch_type>
@@ -402,11 +402,11 @@
 		<supplies>
 			[spawn] \n
 			wpn_walther \n
-			ammo_9x19_fmj \n			
+			ammo_9x19_fmj \n
 #include "gameplay\supplies\character_food.xml" \n
 #include "gameplay\supplies\character_drugs.xml"
 		</supplies>
-		
+
 #include "gameplay\character_criticals.xml">
 
 		<start_dialog>zat_b22_stalker_medic_start</start_dialog>
@@ -425,15 +425,15 @@
 		<icon>ui_inGame2_neutral_2_mask</icon>
 		<map_icon x="1" y="0"></map_icon>
 		<bio>No information is available.</bio>
-		
+
 		<class>guid_bar_stalker_navigator</class>
 		<community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
 		<snd_config>characters_voice\human\stalker_3\</snd_config>
-		
+
 		<rank>5800</rank>
 		<money min="16345" max="18255" infinitive="0"/>
 		<reputation>1000</reputation>
-		
+
 		<visual>actors\stalker_neutral\stalker_neutral_navigator</visual>
 		<supplies>
 		[spawn] \n
@@ -441,12 +441,12 @@
 		ammo_9x39_pab9 = 2 \n
 		wpn_beretta \n
 		ammo_9x19_fmj = 2 \n
-		
+
 #include "gameplay\supplies\character_items.xml"
 #include "gameplay\supplies\character_food.xml"
 #include "gameplay\supplies\character_drugs.xml"
 		</supplies>
-		
+
 #include "gameplay\character_criticals.xml"
 
 		<actor_dialog>meet_guid_bar</actor_dialog>
@@ -456,7 +456,7 @@
 	</specific_character>
 
 
-	
+
 	<!-- ************************************************ -->
     <!-- ******************* ARENA ********************** -->
 	<!-- ************************************************ -->
@@ -491,10 +491,10 @@
 		<actor_dialog>bar_arena_man_job</actor_dialog>
 		<actor_dialog>bar_arena_manager_game</actor_dialog>
 		<actor_dialog>totaliz_pre</actor_dialog>
-		<actor_dialog>totaliz_begin</actor_dialog>	
-		<actor_dialog>total_reward_dialog_1000</actor_dialog>	
-		<actor_dialog>total_reward_dialog_2500</actor_dialog>	
-		<actor_dialog>total_reward_dialog_5000</actor_dialog>														   
+		<actor_dialog>totaliz_begin</actor_dialog>
+		<actor_dialog>total_reward_dialog_1000</actor_dialog>
+		<actor_dialog>total_reward_dialog_2500</actor_dialog>
+		<actor_dialog>total_reward_dialog_5000</actor_dialog>
 		<actor_dialog>actor_break_dialog</actor_dialog>
     </specific_character>
 
@@ -523,7 +523,7 @@
 #include "gameplay\character_dialogs.xml"
     </specific_character>
 
-	
+
 <!------------------------OLD ARENA--------------------------------- -->
     <specific_character id="bar_arena_savage" team_default = "1">
 		<name>bar_beast_name</name>
@@ -571,7 +571,7 @@
 		</supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
 <!-----------------STALKER 2---------------------------------->
     <specific_character id="bar_arena_stalker_2" team_default = "1">
 		<name>GENERATE_NAME_stalker</name>
@@ -593,7 +593,7 @@
 		</supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
 <!--------------------STALKER 3_1 and 3_2---------------------->
     <specific_character id="bar_arena_stalker_3_1" team_default = "1">
 		<name>GENERATE_NAME_stalker</name>
@@ -615,7 +615,7 @@
 		</supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
     <specific_character id="bar_arena_stalker_3_2" team_default = "1">
 		<name>GENERATE_NAME_stalker</name>
 		<icon>ui_inGame2_neutral_2_mask</icon>
@@ -636,7 +636,7 @@
 		</supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
 <!---------------STALKER 4_1, 4_2, 4_3,4_4,4_5--------------->
     <!---enemy--->
     <specific_character id="bar_arena_stalker_4_1" team_default = "1">
@@ -659,7 +659,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
     <specific_character id="bar_arena_stalker_4_2" team_default = "1">
     <name>GENERATE_NAME_bandit</name>
     <icon>ui_inGame2_bandit_2</icon>
@@ -680,7 +680,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
     <specific_character id="bar_arena_stalker_4_3" team_default = "1">
     <name>GENERATE_NAME_bandit</name>
     <icon>ui_inGame2_bandit_1b</icon>
@@ -701,7 +701,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
     <!----friends---->
     <specific_character id="bar_arena_stalker_4_4" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
@@ -724,7 +724,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
     <specific_character id="bar_arena_stalker_4_5" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
     <icon>ui_inGame2_neutral_1</icon>
@@ -746,7 +746,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
 <!------------STALKER 5_1,5_2------------------------->
     <specific_character id="bar_arena_stalker_5_1" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
@@ -769,7 +769,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
     <specific_character id="bar_arena_stalker_5_2" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
     <icon>ui_inGame2_Soldier_4</icon>
@@ -790,7 +790,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
 <!---------------STALKER 6_1,6_2,6_3,6_4,6_5,6_6------------->
     <specific_character id="bar_arena_stalker_6_1" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
@@ -812,7 +812,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
     <specific_character id="bar_arena_stalker_6_2" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
     <icon>ui_inGame2_bandit_4</icon>
@@ -833,7 +833,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
     <specific_character id="bar_arena_stalker_6_3" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
     <icon>ui_inGame2_bandit_4</icon>
@@ -854,7 +854,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
     <specific_character id="bar_arena_stalker_6_4" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
     <icon>ui_inGame2_bandit_5</icon>
@@ -875,7 +875,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
     <specific_character id="bar_arena_stalker_6_5" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
     <icon>ui_inGame2_bandit_exo</icon>
@@ -896,7 +896,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
     <specific_character id="bar_arena_stalker_6_6" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
     <icon>ui_inGame2_bandit_exo</icon>
@@ -917,7 +917,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
 <!------ STALKER 7 ------------------->
     <specific_character id="bar_arena_stalker_7" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
@@ -940,7 +940,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
 <!-----------STALKER 8_1,8_2,8_3,8_4-------------------->
     <specific_character id="bar_arena_stalker_8_1" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
@@ -962,7 +962,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
     <specific_character id="bar_arena_stalker_8_2" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
     <icon>ui_inGame2_neutral_4</icon>
@@ -983,7 +983,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
     <specific_character id="bar_arena_stalker_8_3" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
     <icon>ui_inGame2_neutral_4</icon>
@@ -1004,7 +1004,7 @@
     </supplies>
 #include "gameplay\character_criticals.xml"
     </specific_character>
-    
+
     <specific_character id="bar_arena_stalker_8_4" team_default = "1">
     <name>GENERATE_NAME_stalker</name>
     <icon>ui_inGame2_neutral_4</icon>
@@ -1027,7 +1027,7 @@
     </specific_character>
 
 
-	
+
 <!-- Dealer at the arena -->
 
 	<specific_character id="total_duty_one_h" team_default = "1">
@@ -1080,7 +1080,7 @@
 #include "gameplay\character_criticals.xml"
 #include "gameplay\character_dialogs.xml"
 	</specific_character>
-	
+
 	<specific_character id="total_stalker_left_one" team_default = "1">
 	<name>GENERATE_NAME_stalker</name>
 	<icon>ui_inGame2_neutral_2_mask</icon>
@@ -1105,7 +1105,7 @@
 #include "gameplay\character_criticals.xml"
 #include "gameplay\character_dialogs.xml"
 	</specific_character>
-	
+
 	<specific_character id="total_stalker_right_one" team_default = "1">
 	<name>GENERATE_NAME_stalker</name>
 	<icon>ui_inGame2_neutral_2</icon>
@@ -1130,7 +1130,7 @@
 #include "gameplay\character_criticals.xml"
 #include "gameplay\character_dialogs.xml"
 	</specific_character>
-	
+
 	<specific_character id="total_group_stalkers_1" team_default = "1">
 	<name>GENERATE_NAME_stalker</name>
 	<icon>ui_inGame2_neutral_2</icon>
@@ -1155,7 +1155,7 @@
 #include "gameplay\character_criticals.xml"
 #include "gameplay\character_dialogs.xml"
 	</specific_character>
-	
+
 	<specific_character id="total_group_stalkers_2" team_default = "1">
 	<name>GENERATE_NAME_stalker</name>
 	<icon>ui_inGame2_neutral_2</icon>
@@ -1255,7 +1255,7 @@
 #include "gameplay\character_criticals.xml"
 #include "gameplay\character_dialogs.xml"
 	</specific_character>
-	
+
 	<specific_character id="total_group_bandits_2" team_default = "1">
 	<name>GENERATE_NAME_bandit</name>
 	<icon>ui_inGame2_bandit_2_mask</icon>
@@ -1379,7 +1379,7 @@
 #include "gameplay\character_criticals.xml"
 #include "gameplay\character_dialogs.xml"
 	</specific_character>
-	
+
 	<specific_character id="total_stalker_one_with_mutant" team_default = "1">
 	<name>GENERATE_NAME_stalker</name>
 	<icon>ui_inGame2_neutral_2_mask</icon>
@@ -1404,7 +1404,7 @@
 #include "gameplay\character_criticals.xml"
 #include "gameplay\character_dialogs.xml"
 	</specific_character>
-	
+
 	<specific_character id="total_duty_one_with_zombies" team_default = "1">
 	<name>GENERATE_NAME_sergeant</name>
 	<icon>ui_inGame2_Dolg_3</icon>
@@ -1445,13 +1445,13 @@
     <snd_config>characters_voice\human\bandit_2\</snd_config>
 	<supplies>
 		[spawn] \n
-		wpn_bm16  \n
-		ammo_12x70_buck  = 1 \n
+		wpn_pm  \n
+		ammo_9x18_pmm  = 1 \n
 #include "gameplay\supplies\character_drugs.xml"
 	</supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
-	
+
 	<specific_character id="total_group_bandits_with_bloodsucker_2" team_default = "1">
 	<name>GENERATE_NAME_bandit</name>
 	<icon>ui_inGame2_bandit_1b</icon>
@@ -1473,7 +1473,7 @@
 	</supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
-	
+
 	<specific_character id="total_two_soldiers_with_burer_1" team_default = "1">
 	<name>GENERATE_NAME_senior_sergeant</name>
 	<icon>ui_inGame2_Soldier_2</icon>
