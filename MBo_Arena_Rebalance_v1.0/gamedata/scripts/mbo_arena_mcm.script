@@ -1,0 +1,47 @@
+-- If you don't use MCM, change your defaults from here.
+local defaults = {
+    price_limit = 25000,
+    days_limit = 2,
+    debug = false
+}
+
+function get_config(key)
+    if ui_mcm then return ui_mcm.get("mbo_arena/"..key) else return defaults[key] end
+end
+
+function on_mcm_load()
+    local op = {
+        id = "mbo_arena",
+        sh = true,
+        gr = {{
+            id = "title",
+            type = "slide",
+            link = "ui_options_slider_player",
+            text = "ui_mcm_mbo_arena_title",
+            size = {512, 50},
+            spacing = 20
+        }, {
+            id = "price_limit",
+            type = "track",
+            val = 2,
+            min = 0,
+            max = 100000,
+            step = 1000,
+            def = 25000
+        }, {
+            id = "days_limit",
+            type = "track",
+            val = 2,
+            min = 0,
+            max = 7,
+            step = 1,
+            def = 2
+        }, {
+            id = "debug",
+            type = "check",
+            val = 1,
+            def = false
+        }}
+    }
+    return op
+end

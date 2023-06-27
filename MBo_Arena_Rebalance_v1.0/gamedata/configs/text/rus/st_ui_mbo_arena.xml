@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<!-- mbo arena -->
+<string_table>
+	<string id="ui_mcm_menu_mbo_arena">
+		<text>Arena Overhaul Config</text>
+	</string>
+	<string id="ui_mcm_mbo_arena_title">
+		<text>Arena Overhaul Config</text>
+	</string>
+	<string id="ui_mcm_mbo_arena_price_limit">
+		<text>Общая сумма лимита для "нон грата"</text>
+	</string>
+	<string id="ui_mcm_mbo_arena_days_limit">
+		<text>Сброс "нон грата" (дни)</text>
+	</string>
+	<string id="ui_mcm_mbo_arena_debug">
+		<text>Дебаг</text>
+	</string>
+</string_table>

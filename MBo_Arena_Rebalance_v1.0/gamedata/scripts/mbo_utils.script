@@ -1,0 +1,112 @@
+--[[
+Utils for future development
+26JUN2023
+This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
+Author: m-bo-one
+--]]
+
+local function starts_with(str, start)
+    return str:sub(1, #start) == start
+end
+
+
+local function ends_with(str, ending)
+    return ending == "" or str:sub(-#ending) == ending
+end
+
+local function is_knife(item)
+    if item == nil then
+        return false
+    end
+
+    return starts_with(item:section(), "knife") or ends_with(item:section(), "knife")
+end
+
+local function is_helmet(item)
+    if item == nil then
+        return false
+    end
+
+    return starts_with(item:section(), "helm") or ends_with(item:section(), "helm")
+end
+
+-- TODO: Add pluggable knife
+function inventory_auto_equip_for_arena()
+    -- triggering event as items will be in added also in callback, so queue ordering
+    CreateTimeEvent("zmo_arena", "auto_equip_arena", 0, function()
+        -- storing items for 1 iter
+        local equiped = {}
+        local function add_to_slot(item)
+            print_dbg("ZMO: loaded:= Object %s created as ID %s (section: %s).", item:name(), item:id(), item:section())
+            if equiped["binoc"] == nil and item:section() == "wpn_binoc" then
+                db.actor:move_to_slot(item, 5)
+                equiped["binoc"] = item
+            elseif equiped["helm"] == nil and is_helmet(item) then
+                db.actor:move_to_slot(item, 12)
+                equiped["helm"] = item
+            elseif equiped["outfit"] == nil and item:is_outfit() then
+                db.actor:move_to_slot(item, 7)
+                equiped["outfit"] = item
+            elseif equiped["knife"] == nil and is_knife(item) then
+                -- NOTE: Automatically equips on actor, so no need
+                -- db.actor:move_to_slot(item, 1)
+                equiped["knife"] = item
+            elseif item:is_weapon() then
+                if equiped["weapon_slot_1"] == nil then
+                    db.actor:move_to_slot(item, 2)
+                    equiped["weapon_slot_1"] = item
+                elseif equiped["weapon_slot_2"] == nil then
+                    db.actor:move_to_slot(item, 3)
+                    equiped["weapon_slot_2"] = item
+                end
+            elseif equiped["exo_battery"] == nil and item:section() == "batteries_exo" then
+                equiped["exo_battery"] = item
+            end
+        end
+        db.actor:inventory_for_each(add_to_slot)
+
+        -- item_exo_device.script dependency
+        -- battery amplification, currently only for last tournament
+        local exo_battery = equiped["exo_battery"]
+        local outfit = equiped["outfit"]
+        if exo_battery ~= nil and outfit ~= nil and item_exo_device.is_exo(outfit) then
+            print_dbg("ZMO: activate battery")
+
+            local data = item_exo_device.get_data(outfit:id())
+            if not data then
+                data = item_exo_device.init_data(outfit:id())
+            end
+            item_exo_device.charge_exo(exo_battery, outfit, data)
+        end
+
+        -- clear as we do not need it anymore
+        RemoveTimeEvent("zmo_arena", "auto_equip_arena")
+    end)
+end
+
+function set_player_icon()
+	if (ui_options.get("gameplay/general/outfit_portrait") == true) then
+		local outfit = db.actor:item_in_slot(7)
+		if (outfit) then
+			local icon = ini_sys:r_string_ex(outfit:section(),"character_portrait")
+			if (icon) then
+				db.actor:set_character_icon(icon)
+			elseif (db.actor_binder.character_icon) then -- use default portrait if no outfit portrait exists
+				db.actor:set_character_icon(db.actor_binder.character_icon)
+			end
+		end
+	end
+end
+
+function force_actor_to_be(comm)
+    db.actor:set_character_community("actor_" .. comm, 0, 0)
+    -- outfit_icon.script deps
+	outfit_icon.set_player_icon()
+end
+
+function print_dbg(text, ...)
+	if mbo_arena_mcm.get_config("debug") or false then
+		printf("mbo_arena | %s | " .. text, time_global(), ...)
+	end
+	return nil
+end

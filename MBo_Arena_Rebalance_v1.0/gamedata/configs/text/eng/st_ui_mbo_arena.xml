@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<!-- mbo arena -->
+<string_table>
+	<string id="ui_mcm_menu_mbo_arena">
+		<text>Arena Overhaul Config</text>
+	</string>
+	<string id="ui_mcm_mbo_arena_title">
+		<text>Arena Overhaul Config</text>
+	</string>
+	<string id="ui_mcm_mbo_arena_price_limit">
+		<text>Total amount to overdraw for "non grata"</text>
+	</string>
+	<string id="ui_mcm_mbo_arena_days_limit">
+		<text>"Non grata" removal (days)</text>
+	</string>
+	<string id="ui_mcm_mbo_arena_debug">
+		<text>Debug</text>
+	</string>
+</string_table>
