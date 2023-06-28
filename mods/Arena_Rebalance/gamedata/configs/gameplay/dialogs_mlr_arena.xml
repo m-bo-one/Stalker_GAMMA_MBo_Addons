@@ -14,7 +14,36 @@
 			</phrase>
 		</phrase_list>
 	</dialog>
+	<dialog id="totaliz_non_grata">
+		<precondition>mbo_arena_dialogs.totaliz_non_grata</precondition>
+		<has_info>totaliz_pre</has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>totaliz_non_grata_0</text>
+				<disable_info>totaliz_non_grata_over_dialog</disable_info>
+				<next>1</next>
+			</phrase>
+			<phrase id="1">
+				<text>totaliz_non_grata_1</text>
+				<next>2</next>
+				<next>3</next>
+			</phrase>
+			<phrase id="2">
+				<text>totaliz_non_grata_2</text>
+				<action>mbo_arena_dialogs.blow_to_face</action>
+				<action>dialogs.break_dialog</action>
+			</phrase>
+			<phrase id="3">
+				<text>totaliz_non_grata_3</text>
+				<next>4</next>
+			</phrase>
+			<phrase id="4">
+				<text>totaliz_non_grata_4</text>
+			</phrase>
+		</phrase_list>
+	</dialog>
 	<dialog id="totaliz_begin">
+		<precondition>mbo_arena_dialogs.totaliz_not_non_grata</precondition>
 		<dont_has_info>totaliz_begin_over_dialog</dont_has_info>
 		<has_info>totaliz_pre</has_info>
 		<phrase_list>

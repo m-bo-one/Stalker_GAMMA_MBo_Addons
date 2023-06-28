@@ -3,7 +3,10 @@ Arena module related for patching totaliz and campaign arena
 26JUN2023
 This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
 Author: m-bo-one
---]] -- !!!!!!!!!!!
+--]]
+
+
+-- !!!!!!!!!!!
 -- TOTALIZATOR
 -- Overriding arena totalizator for spectator items drop off in the box and enabling auto equip (mostly only binocle here)
 local function teleport_for_totaliz(first_speaker, second_speaker)
@@ -19,7 +22,7 @@ local function teleport_for_totaliz(first_speaker, second_speaker)
     if has_alife_info("totaliz_money_has_gone") then
         alife_create_item("wpn_binoc", db.actor)
 
-        mbo_utils.inventory_auto_equip_for_arena()
+        mbo_arena_utils.inventory_auto_equip_for_arena()
     end
 end
 
@@ -58,7 +61,7 @@ local function bar_arena_teleport(actor, npc)
     end
 
     -- always a loner in the arena
-    mbo_utils.force_actor_to_be("stalker")
+    mbo_arena_utils.force_actor_to_be("stalker")
 
     local spawn_items = {}
 
@@ -152,7 +155,7 @@ local function bar_arena_teleport(actor, npc)
         se_save_var(se.id, se:name(), "unpatched", true)
     end
 
-    mbo_utils.inventory_auto_equip_for_arena()
+    mbo_arena_utils.inventory_auto_equip_for_arena()
 end
 
 -- Overriding arena baseline on exit
@@ -180,7 +183,7 @@ local function bar_arena_teleport_2(actor, npc)
     db.actor:set_actor_direction(-dir:getH())
 
     -- return back disguise
-    mbo_utils.force_actor_to_be(gameplay_disguise.get_default_comm())
+    mbo_arena_utils.force_actor_to_be(gameplay_disguise.get_default_comm())
 
     -- TODO: As this function local, somehow I want to heal actor
     -- healing with superior kit after battle
@@ -205,7 +208,7 @@ local function make_enemy(actor, npc, p)
     -- as we are a stalker, so rest is an enemy
     -- TODO: What to do in case of spectator?
     if comm ~= "stalker" then
-        mbo_utils.print_dbg("Actor as enemy set")
+        mbo_arena_utils.print_dbg("Actor as enemy set")
         npc1:set_relation(game_object.enemy, db.actor)
     end
 

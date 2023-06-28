@@ -22,25 +22,23 @@ function on_mcm_load()
             text = "ui_mcm_mbo_arena_title",
             size = {512, 50},
             spacing = 20
-        },
-        -- {
-        --     id = "price_limit",
-        --     type = "track",
-        --     val = 2,
-        --     min = 0,
-        --     max = 100000,
-        --     step = 1000,
-        --     def = 25000
-        -- }, {
-        --     id = "days_limit",
-        --     type = "track",
-        --     val = 2,
-        --     min = 0,
-        --     max = 7,
-        --     step = 1,
-        --     def = 2
-        -- },
-        {
+        }, {
+            id = "price_limit",
+            type = "track",
+            val = 2,
+            min = 0,
+            max = 100000,
+            step = 1000,
+            def = 25000
+        }, {
+            id = "days_limit",
+            type = "track",
+            val = 2,
+            min = 0,
+            max = 7,
+            step = 1,
+            def = 2
+        }, {
             id = "degradation_coeff",
             type = "track",
             val = 2,

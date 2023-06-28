@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+	<string id="totaliz_non_grata_0">
+		<text>I want to watch a battle.</text>
+	</string>
+	<string id="totaliz_non_grata_1">
+		<text>I'm afraid you're not welcome here, so you're off the hook.</text>
+	</string>
+	<string id="totaliz_non_grata_2">
+		<text>Maybe I will put you on the "hook"?</text>
+	</string>
+	<string id="totaliz_non_grata_3">
+		<text>Why?</text>
+	</string>
+	<string id="totaliz_non_grata_4">
+		<text>Other arena spectators are not happy with the fact that you often predict matches. So... try to come back later when things have calmed down.</text>
+	</string>
+</string_table>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+	<string id="totaliz_non_grata_0">
+		<text>Я хочу посмотреть на бой.</text>
+	</string>
+	<string id="totaliz_non_grata_1">
+		<text>Боюсь, тебе здесь не рады, так что ставки для тебя закрыты.</text>
+	</string>
+	<string id="totaliz_non_grata_2">
+		<text>А может я тебя закрою?</text>
+	</string>
+	<string id="totaliz_non_grata_3">
+		<text>Это еще почему?</text>
+	</string>
+	<string id="totaliz_non_grata_4">
+		<text>Другие зрители арены недовольны тем, что ты часто прогнозируешь матчи. Так что...  приходи попозже, когда все уляжется.</text>
+	</string>
+</string_table>

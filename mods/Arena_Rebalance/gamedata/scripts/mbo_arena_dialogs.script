@@ -1,0 +1,34 @@
+--[[
+Arena module for dialogs
+26JUN2023
+This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
+Author: m-bo-one
+--]]
+
+local non_grata = true
+
+-- Checked for non grata, if passed, kick actor and play some sound
+function totaliz_non_grata()
+    mbo_arena_utils.print_dbg("totaliz_non_grata: %s", non_grata)
+    return non_grata
+end
+
+function totaliz_not_non_grata()
+    mbo_arena_utils.print_dbg("totaliz_not_non_grata: %s", not non_grata)
+    return not non_grata
+end
+
+function blow_to_face(actor, npc)
+    local current_godwill = npc:goodwill(actor)
+    mbo_arena_utils.print_dbg("blow to face, current goodwill: %s", current_godwill)
+    npc:force_set_goodwill(-5000, actor)
+
+    CreateTimeEvent("mbo_arena", "blow_to_face", 1, function()
+        -- return previous godwill, so npc could make a hit
+        npc:force_set_goodwill(current_godwill, actor)
+
+        mbo_arena_utils.print_dbg("reset back goodwill, he has calmed down: %s", current_godwill)
+
+        RemoveTimeEvent("mbo_arena", "blow_to_face")
+    end)
+end

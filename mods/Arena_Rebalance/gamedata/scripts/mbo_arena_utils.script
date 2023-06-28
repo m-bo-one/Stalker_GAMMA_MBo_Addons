@@ -88,7 +88,7 @@ end
 -- TODO: Add pluggable knife
 function inventory_auto_equip_for_arena()
     -- triggering event as items will be in added also in callback, so queue ordering
-    CreateTimeEvent("mbo_arena", "auto_equip_arena", 0, function()
+    CreateTimeEvent("mbo_arena", "auto_equip", 0, function()
         -- storing items for 1 iter
         local equiped = {}
         local function add_to_slot(item)
@@ -166,7 +166,7 @@ function inventory_auto_equip_for_arena()
         end
 
         -- clear as we do not need it anymore
-        RemoveTimeEvent("mbo_arena", "auto_equip_arena")
+        RemoveTimeEvent("mbo_arena", "auto_equip")
     end)
 end
 
