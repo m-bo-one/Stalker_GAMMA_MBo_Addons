@@ -2,6 +2,8 @@
 local defaults = {
     price_limit = 25000,
     days_limit = 2,
+    degradation_coeff = 0.8,
+    degradation_rand_range = 0.15,
     debug = false
 }
 
@@ -20,22 +22,40 @@ function on_mcm_load()
             text = "ui_mcm_mbo_arena_title",
             size = {512, 50},
             spacing = 20
+        },
+        -- {
+        --     id = "price_limit",
+        --     type = "track",
+        --     val = 2,
+        --     min = 0,
+        --     max = 100000,
+        --     step = 1000,
+        --     def = 25000
+        -- }, {
+        --     id = "days_limit",
+        --     type = "track",
+        --     val = 2,
+        --     min = 0,
+        --     max = 7,
+        --     step = 1,
+        --     def = 2
+        -- },
+        {
+            id = "degradation_coeff",
+            type = "track",
+            val = 2,
+            min = 0.4,
+            max = 1,
+            step = 0.01,
+            def = 0.8
         }, {
-            id = "price_limit",
+            id = "degradation_rand_range",
             type = "track",
             val = 2,
             min = 0,
-            max = 100000,
-            step = 1000,
-            def = 25000
-        }, {
-            id = "days_limit",
-            type = "track",
-            val = 2,
-            min = 0,
-            max = 7,
-            step = 1,
-            def = 2
+            max = 0.3,
+            step = 0.01,
+            def = 0.15
         }, {
             id = "debug",
             type = "check",

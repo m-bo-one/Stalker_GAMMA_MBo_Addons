@@ -14,6 +14,12 @@
 	<string id="ui_mcm_mbo_arena_days_limit">
 		<text>Сброс "нон грата" (дни)</text>
 	</string>
+	<string id="ui_mcm_mbo_arena_degradation_coeff">
+		<text>Базовый начальный коэффициент деградации для выданых вещей (%)</text>
+	</string>
+	<string id="ui_mcm_mbo_arena_degradation_rand_range">
+		<text>Случайный диапазон для ухудшения (%)</text>
+	</string>
 	<string id="ui_mcm_mbo_arena_debug">
 		<text>Дебаг</text>
 	</string>

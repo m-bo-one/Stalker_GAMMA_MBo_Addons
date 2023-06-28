@@ -14,6 +14,14 @@ local function ends_with(str, ending)
     return ending == "" or str:sub(-#ending) == ending
 end
 
+local function is_ammo(item)
+    if item == nil then
+        return false
+    end
+
+    return starts_with(item:section(), "ammo") or ends_with(item:section(), "ammo")
+end
+
 local function is_knife(item)
     if item == nil then
         return false
@@ -30,37 +38,93 @@ local function is_helmet(item)
     return starts_with(item:section(), "helm") or ends_with(item:section(), "helm")
 end
 
+function calculate_degradate_random(coeff, rand_range)
+    local delta = coeff * rand_range
+    return math.random(
+        math.max(math.floor(100 * (coeff - delta)), 0),
+        math.min(math.floor(100 * (coeff + delta)), 100)
+    )
+end
+
+function apply_degradation(item)
+    local degradation_rand_range = mbo_arena_mcm.get_config("degradation_rand_range")
+    local degradation_coeff = mbo_arena_mcm.get_config("degradation_coeff")
+
+    local random_coeff = calculate_degradate_random(degradation_coeff, degradation_rand_range)
+    if random_coeff ~= 100 then
+        print_dbg(
+            "using degradation with perc: %s for item: %s",
+            random_coeff, item:section()
+        )
+        item:set_condition(random_coeff / 100)
+
+        if IsWeapon(obj) then
+            print_dbg("degrade wpn parts")
+            item_parts.evaluate_parts(item)
+        end
+    end
+end
+
+function change_ammo(wpn, ammo, remove_prv_ammo)
+    local ammo_list = utils_item.get_ammo(wpn:section(), wpn:id())
+    local ammo_type
+    for i=1,#ammo_list do
+        if (ammo_list[i] == ammo:section()) then
+            ammo_type = i-1
+            break
+        end
+    end
+    if ammo_type then
+        local wpn_ammo_mag_size = ini_sys:r_u32(wpn:section(), "ammo_mag_size")
+        if wpn_ammo_mag_size then
+            wpn:unload_magazine(not remove_prv_ammo)
+            wpn:set_ammo_type(ammo_type)
+            wpn:set_ammo_elapsed(wpn_ammo_mag_size)
+            print_dbg("- Update game weapon magazine | [%s] - ammo type used: %s", wpn:section(), ammo_type)
+        end
+    end
+end
+
 -- TODO: Add pluggable knife
 function inventory_auto_equip_for_arena()
     -- triggering event as items will be in added also in callback, so queue ordering
-    CreateTimeEvent("zmo_arena", "auto_equip_arena", 0, function()
+    CreateTimeEvent("mbo_arena", "auto_equip_arena", 0, function()
         -- storing items for 1 iter
         local equiped = {}
         local function add_to_slot(item)
-            print_dbg("ZMO: loaded:= Object %s created as ID %s (section: %s).", item:name(), item:id(), item:section())
+            print_dbg("loaded:= Object %s created as ID %s (section: %s).", item:name(), item:id(), item:section())
             if equiped["binoc"] == nil and item:section() == "wpn_binoc" then
                 db.actor:move_to_slot(item, 5)
                 equiped["binoc"] = item
             elseif equiped["helm"] == nil and is_helmet(item) then
                 db.actor:move_to_slot(item, 12)
                 equiped["helm"] = item
+                apply_degradation(item)
             elseif equiped["outfit"] == nil and item:is_outfit() then
                 db.actor:move_to_slot(item, 7)
                 equiped["outfit"] = item
+                apply_degradation(item)
             elseif equiped["knife"] == nil and is_knife(item) then
                 -- NOTE: Automatically equips on actor, so no need
                 -- db.actor:move_to_slot(item, 1)
                 equiped["knife"] = item
             elseif item:is_weapon() then
-                if equiped["weapon_slot_1"] == nil then
+                if equiped["wpn_slot_1"] == nil then
                     db.actor:move_to_slot(item, 2)
-                    equiped["weapon_slot_1"] = item
-                elseif equiped["weapon_slot_2"] == nil then
+                    equiped["wpn_slot_1"] = item
+                    apply_degradation(item)
+                elseif equiped["wpn_slot_2"] == nil then
                     db.actor:move_to_slot(item, 3)
-                    equiped["weapon_slot_2"] = item
+                    equiped["wpn_slot_2"] = item
+                    apply_degradation(item)
                 end
             elseif equiped["exo_battery"] == nil and item:section() == "batteries_exo" then
                 equiped["exo_battery"] = item
+            elseif is_ammo(item) then
+                if equiped["ammos"] == nil then
+                    equiped["ammos"] = {}
+                end
+                table.insert(equiped["ammos"], item)
             end
         end
         db.actor:inventory_for_each(add_to_slot)
@@ -70,7 +134,7 @@ function inventory_auto_equip_for_arena()
         local exo_battery = equiped["exo_battery"]
         local outfit = equiped["outfit"]
         if exo_battery ~= nil and outfit ~= nil and item_exo_device.is_exo(outfit) then
-            print_dbg("ZMO: activate battery")
+            print_dbg("activate battery")
 
             local data = item_exo_device.get_data(outfit:id())
             if not data then
@@ -79,8 +143,30 @@ function inventory_auto_equip_for_arena()
             item_exo_device.charge_exo(exo_battery, outfit, data)
         end
 
+        -- making weapon activated automatically
+        local ammos = equiped["ammos"]
+        local wpn_slot_1 = equiped["wpn_slot_1"]
+        local wpn_slot_2 = equiped["wpn_slot_2"]
+        if wpn_slot_1 ~= nil then
+            -- in case item already equiped and active
+            local aitem = db.actor:active_item()
+            if (aitem and aitem ~= nil and aitem:id() ~= wpn_slot_1:id()) then
+                db.actor:make_item_active(wpn_slot_1)
+            end
+
+            for i, ammo in ipairs(ammos) do
+                change_ammo(wpn_slot_1, ammo, true)
+            end
+        end
+
+        if wpn_slot_2 ~= nil then
+            for i, ammo in ipairs(ammos) do
+                change_ammo(wpn_slot_2, ammo, true)
+            end
+        end
+
         -- clear as we do not need it anymore
-        RemoveTimeEvent("zmo_arena", "auto_equip_arena")
+        RemoveTimeEvent("mbo_arena", "auto_equip_arena")
     end)
 end
 
@@ -91,22 +177,20 @@ function set_player_icon()
 			local icon = ini_sys:r_string_ex(outfit:section(),"character_portrait")
 			if (icon) then
 				db.actor:set_character_icon(icon)
-			elseif (db.actor_binder.character_icon) then -- use default portrait if no outfit portrait exists
-				db.actor:set_character_icon(db.actor_binder.character_icon)
 			end
+        elseif (db.actor_binder.character_icon) then -- use default portrait if no outfit portrait exists
+            db.actor:set_character_icon(db.actor_binder.character_icon)
 		end
 	end
 end
 
 function force_actor_to_be(comm)
     db.actor:set_character_community("actor_" .. comm, 0, 0)
-    -- outfit_icon.script deps
-	outfit_icon.set_player_icon()
+	set_player_icon()
 end
 
 function print_dbg(text, ...)
 	if mbo_arena_mcm.get_config("debug") or false then
-		printf("mbo_arena | %s | " .. text, time_global(), ...)
+		printdbg("mbo_arena | %s | " .. text, time_global(), ...)
 	end
-	return nil
 end

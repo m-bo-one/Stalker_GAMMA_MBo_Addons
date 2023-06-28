@@ -105,8 +105,6 @@ local function bar_arena_teleport(actor, npc)
         table.insert(spawn_items, "wpn_abakan_n")
         table.insert(spawn_items, "ammo_5.45x39_ap")
         table.insert(spawn_items, "ammo_5.45x39_ap")
-        table.insert(spawn_items, "ammo_5.45x39_ap")
-        table.insert(spawn_items, "ammo_5.45x39_ap")
 
         table.insert(spawn_items, "helm_resp")
         table.insert(spawn_items, "svoboda_light_outfit")
@@ -117,8 +115,6 @@ local function bar_arena_teleport(actor, npc)
         table.insert(spawn_items, "wpn_knife")
 
         table.insert(spawn_items, "wpn_groza")
-        table.insert(spawn_items, "ammo_9x39_ap")
-        table.insert(spawn_items, "ammo_9x39_ap")
         table.insert(spawn_items, "ammo_9x39_ap")
         table.insert(spawn_items, "ammo_9x39_ap")
 
@@ -150,8 +146,6 @@ local function bar_arena_teleport(actor, npc)
 
         table.insert(spawn_items, "batteries_exo")
     end
-
-    local k, v = 0, 0
 
     for k, v in pairs(spawn_items) do
         local se = alife_create(v, db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), AC_ID)
@@ -187,6 +181,10 @@ local function bar_arena_teleport_2(actor, npc)
 
     -- return back disguise
     mbo_utils.force_actor_to_be(gameplay_disguise.get_default_comm())
+
+    -- TODO: As this function local, somehow I want to heal actor
+    -- healing with superior kit after battle
+    -- zzz_player_injuries.actor_on_item_use(nil, "survival_kit")
 end
 
 -- looks like this function only used for .ltx setup bar and mlr/arena only

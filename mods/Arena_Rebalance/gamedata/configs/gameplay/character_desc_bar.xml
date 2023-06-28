@@ -556,7 +556,7 @@
 		<map_icon x="0" y="0"></map_icon>
 		<bio>bar_arena_stalker</bio>
 		<class>bar_arena_stalker_1</class>
-		<community>arena_enemy</community> <terrain_sect>stalker_terrain</terrain_sect>
+		<community>bandit</community> <terrain_sect>stalker_terrain</terrain_sect>
 		<rank>1648</rank>
 		<reputation>2487</reputation>
 		<snd_config>characters_voice\human\stalker_1\</snd_config>
@@ -579,7 +579,7 @@
 		<map_icon x="1" y="0"></map_icon>
 		<bio>bar_arena_stalker</bio>
 		<class>bar_arena_stalker_2</class>
-		<community>arena_enemy</community> <terrain_sect>stalker_terrain</terrain_sect>
+		<community>bandit</community> <terrain_sect>stalker_terrain</terrain_sect>
 		<rank>1956</rank>
 		<reputation>2099</reputation>
 		<visual>actors\stalker_neutral\stalker_neutral2g_mask</visual>
@@ -1438,15 +1438,15 @@
 	<class>total_group_bandits_with_bloodsucker_1</class>
 	<community>bandit</community>
 	<terrain_sect>stalker_terrain</terrain_sect>
-	<rank>206</rank>
+	<rank>1243</rank>
 	<reputation>1253</reputation>
 	<money min="250" max="1750" infinitive="0"/>
     <visual>actors\stalker_bandit\stalker_bandit1b_mask</visual>
     <snd_config>characters_voice\human\bandit_2\</snd_config>
 	<supplies>
 		[spawn] \n
-		wpn_pm  \n
-		ammo_9x18_pmm  = 1 \n
+		wpn_mosin  \n
+		ammo_7.62x54_7h1  = 1 \n
 #include "gameplay\supplies\character_drugs.xml"
 	</supplies>
 #include "gameplay\character_criticals.xml"
@@ -1460,14 +1460,14 @@
 	<class>total_group_bandits_with_bloodsucker_2</class>
 	<community>bandit</community>
 	<terrain_sect>stalker_terrain</terrain_sect>
-	<rank>206</rank>
+	<rank>2064</rank>
 	<reputation>1253</reputation>
 	<money min="250" max="1750" infinitive="0"/>
     <visual>actors\stalker_bandit\stalker_bandit1b</visual>
     <snd_config>characters_voice\human\bandit_1\</snd_config>
 	<supplies>
 		[spawn] \n
-		wpn_pm  \n
+		wpn_kiparis  \n
 		ammo_9x18_pmm  = 1 \n
 #include "gameplay\supplies\character_drugs.xml"
 	</supplies>

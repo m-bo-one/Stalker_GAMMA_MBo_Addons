@@ -218,7 +218,7 @@
 			</phrase>
 			<phrase id="7">
 				<text>totaliz_begin_7</text>
-				<next>13</next>
+				<!-- <next>13</next> -->
 				<next>14</next>
 				<next>15</next>
 				<!-- <next>16</next> -->

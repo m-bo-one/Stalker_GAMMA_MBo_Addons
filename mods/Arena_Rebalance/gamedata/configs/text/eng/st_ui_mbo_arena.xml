@@ -9,10 +9,16 @@
 		<text>Arena Overhaul Config</text>
 	</string>
 	<string id="ui_mcm_mbo_arena_price_limit">
-		<text>Total amount to overdraw for "non grata"</text>
+		<text>Total amount to overdraw for "non grata" (price)</text>
 	</string>
 	<string id="ui_mcm_mbo_arena_days_limit">
 		<text>"Non grata" removal (days)</text>
+	</string>
+	<string id="ui_mcm_mbo_arena_degradation_coeff">
+		<text>Base start coeff to degradate of given equipment (%)</text>
+	</string>
+	<string id="ui_mcm_mbo_arena_degradation_rand_range">
+		<text>Random range for degradation (%)</text>
 	</string>
 	<string id="ui_mcm_mbo_arena_debug">
 		<text>Debug</text>
