@@ -1,0 +1,23 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.ca/fo3/ModConfig5.0.xsd">
+  <moduleName position="Left" colour="000000"> MBo Arena Rebalance</moduleName>
+  <installSteps order="Explicit">
+    <installStep name="">
+      <optionalFileGroups order="Explicit">
+        <group name="Main Files" type="SelectAny">
+          <plugins order="Ascending">
+            <plugin name="Core">
+              <description>Resurect of arena totalizator and additional rebalance and fixes for storyline arena.</description>
+              <image path="icon.jpg"/>
+              <files>
+                <folder source="main" destination="" priority="0" alwaysInstall="true" installIfUsable="false"/>
+              </files>
+              <typeDescriptor>
+                <type name="Required"/>
+              </typeDescriptor>
+            </plugin>
+          </plugins>
+        </group>
+      </optionalFileGroups>
+    </installStep>
+  </installSteps>
+</config>

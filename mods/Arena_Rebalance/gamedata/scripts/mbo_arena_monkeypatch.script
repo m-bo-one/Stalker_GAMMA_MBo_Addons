@@ -3,6 +3,12 @@ Arena module related for patching totaliz and campaign arena
 Author: m-bo-one
 --]]
 
+-- imports
+local print_dbg = mbo_arena_utils.print_dbg
+local inventory_auto_equip_for_arena = mbo_arena_utils.inventory_auto_equip_for_arena
+local force_actor_to_be = mbo_arena_utils.force_actor_to_be
+local update_non_grata_info = mbo_arena_storage.update_non_grata_info
+
 
 -- !!!!!!!!!!!
 -- TOTALIZATOR
@@ -20,7 +26,7 @@ local function teleport_for_totaliz(first_speaker, second_speaker)
     if has_alife_info("totaliz_money_has_gone") then
         alife_create_item("wpn_binoc", db.actor)
 
-        mbo_arena_utils.inventory_auto_equip_for_arena()
+        inventory_auto_equip_for_arena()
     end
 end
 
@@ -59,7 +65,7 @@ local function bar_arena_teleport(actor, npc)
     end
 
     -- always a loner in the arena
-    mbo_arena_utils.force_actor_to_be("stalker")
+    force_actor_to_be("stalker")
 
     local spawn_items = {}
 
@@ -153,7 +159,7 @@ local function bar_arena_teleport(actor, npc)
         se_save_var(se.id, se:name(), "unpatched", true)
     end
 
-    mbo_arena_utils.inventory_auto_equip_for_arena()
+    inventory_auto_equip_for_arena()
 end
 
 -- Overriding arena baseline on exit
@@ -181,7 +187,7 @@ local function bar_arena_teleport_2(actor, npc)
     db.actor:set_actor_direction(-dir:getH())
 
     -- return back disguise
-    mbo_arena_utils.force_actor_to_be(gameplay_disguise.get_default_comm())
+    force_actor_to_be(gameplay_disguise.get_default_comm())
 
     -- TODO: As this function local, somehow I want to heal actor
     -- healing with superior kit after battle
@@ -200,55 +206,63 @@ local function make_enemy(actor, npc, p)
         return
     end
 
-    local comm = npc1:character_community()
+    -- monsters do not have relations
+    if not IsMonster(npc1) then
+        local comm = npc1:character_community()
 
-    -- just in case of something like dynamic relations, etc
-    -- as we are a stalker, so rest is an enemy
-    -- TODO: What to do in case of spectator?
-    if comm ~= "stalker" then
-        mbo_arena_utils.print_dbg("Actor as enemy set")
-        npc1:set_relation(game_object.enemy, db.actor)
+        -- just in case of something like dynamic relations, etc
+        -- as we are a stalker, so rest is an enemy
+        if comm ~= "stalker" and not has_alife_info("totaliz_money_has_gone") then
+            print_dbg("Actor as enemy set")
+            npc1:set_relation(game_object.enemy, db.actor)
+        end
+
+        npc1:set_relation(game_object.enemy, npc2)
     end
 
-    npc1:set_relation(game_object.enemy, npc2)
-    npc2:set_relation(game_object.enemy, npc1)
+    -- print_dbg(
+    --     "npc | id: %s | clsid: %s | name: %s | section: %s | is monster?: %s | " ..
+    --     "enemy: %s | relation: %s",
+    --     npc1:id(), npc1:clsid(), npc1:name(), npc1:section(), npc1:is_monster(),
+    --     npc1:get_enemy(), npc1:relation(npc2)
+    -- )
 end
 
 local function take_totaliz_1(first_speaker, second_speaker)
     local amount = 1000
 	dialogs.relocate_money_from_actor(first_speaker, second_speaker, amount)
-    mbo_arena_storage.update_non_grata_info(-amount)
+    update_non_grata_info(-amount)
 end
 
 local function take_totaliz_2(first_speaker, second_speaker)
     local amount = 2500
-    mbo_arena_utils.print_dbg("take_totaliz_2: %s", amount)
+    print_dbg("take_totaliz_2: %s", amount)
 	dialogs.relocate_money_from_actor(first_speaker, second_speaker, amount)
-    mbo_arena_storage.update_non_grata_info(-amount)
+    update_non_grata_info(-amount)
 end
 
 local function take_totaliz_5(first_speaker, second_speaker)
     local amount = 5000
 	dialogs.relocate_money_from_actor(first_speaker, second_speaker, amount)
-    mbo_arena_storage.update_non_grata_info(-amount)
+    update_non_grata_info(-amount)
 end
 
 local function total_reward_1000(actor, npc, p)
     local amount = math.random(2000, 4000)
 	dialogs.relocate_money(db.actor, amount,"in")
-    mbo_arena_storage.update_non_grata_info(amount)
+    update_non_grata_info(amount)
 end
 
 local function total_reward_2500(actor, npc, p)
     local amount = math.random(3500, 6000)
 	dialogs.relocate_money(db.actor, amount,"in")
-    mbo_arena_storage.update_non_grata_info(amount)
+    update_non_grata_info(amount)
 end
 
 local function total_reward_5000(actor, npc, p)
     local amount = math.random(7000, 15000)
 	dialogs.relocate_money(db.actor, amount, "in")
-    mbo_arena_storage.update_non_grata_info(amount)
+    update_non_grata_info(amount)
 end
 
 -- !!!!!!!!!!!!!!

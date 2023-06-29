@@ -1,0 +1,23 @@
+<fomod>
+	<Name>MBo's Arena Rebalance</Name>
+	<Author>MBo</Author>
+	<Version>1.0</Version>
+	<Description>
+    Resurect of arena totalizator and additional rebalance and fixes for storyline arena. Still under development,
+    please let me know in case of bugs. Integrated with **MCM**
+
+    ### Current Arena fixes:
+    - rework items unequipment (currently all will be in the arena box after the match);
+    - automatically equip items on arena (totally, I frustrated about this, why it was not designed);
+    - automatically equip binocul as spectator in totalizator;
+    - fix 1st battle where enemy doing nothing on player vision;
+    - fix 2nd battle where enemy doing nothing on player vision;
+    - fix 4rth battle where allies just stayed and no actions from them (they are fight right now);
+    - fix 8th battle (last one) where all stalkers should be an enemy (fix as in SoC, just make them as different factions)
+    - rebalanced items for each stage, returned back more as in SoC, just with some modifications
+    - return back some totalizator fights (stalkers vs bandits, freedom vs dolg, bloodsucker vs 2 bandits, zombies vs 1 dolg, rest should be rebalanced and fixed, not done yet :()
+    - add weapon and armor condition degradation (configurable in MCM), more interesting to play when gun is not shooting and you do not see anything in helm xD
+    - added "non grata" limit for totalizator to avoid be rich just sitting on arena (not possible to abuse via saves)
+    - added Boar vs Pseudosodog (currently 5:1 unfortunatelly, but will be fixed by bet coefficient later)
+    </Description>
+</fomod>

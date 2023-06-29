@@ -3,25 +3,43 @@
 <!-- mbo arena -->
 <string_table>
 	<string id="ui_mcm_menu_mbo_arena">
-		<text>Arena Overhaul Config</text>
+		<text>MBo Arena Overhaul Config</text>
 	</string>
 	<string id="ui_mcm_mbo_arena_title">
-		<text>Arena Overhaul Config</text>
+		<text>MBo Arena Overhaul Config</text>
 	</string>
 	<string id="ui_mcm_mbo_arena_price_limit">
 		<text>Total amount to overdraw for "non grata" (price)</text>
+		<description>
+			Won amount from bets to reach a ban on the arena
+		</description>
 	</string>
 	<string id="ui_mcm_mbo_arena_days_limit">
 		<text>"Non grata" removal (days)</text>
+		<description>
+			When "non grata" status will be removed. Set this or price limit as zero if you want to switch off
+		</description>
 	</string>
 	<string id="ui_mcm_mbo_arena_reminder_delta">
 		<text>Reminder factor (mins)</text>
+		<description>
+			How fast you could pass a price limit threshold to be banned from bets. Reducing this factor causing price limit refresh faster.
+			Recommend to keep this value as default, only if you want to experiment.
+		</description>
 	</string>
 	<string id="ui_mcm_mbo_arena_degradation_coeff">
 		<text>Base start coeff to degradate of given equipment (%)</text>
+		<description>
+			This is a a multiplier for the arena armor and weapon.
+			So if you armor has 100%, in case of degradation coefficient with 0.5, your armor will be 50% durability.
+		</description>
 	</string>
 	<string id="ui_mcm_mbo_arena_degradation_rand_range">
 		<text>Random range for degradation (%)</text>
+		<description>
+			This is a range to give a randomness from degradation coefficient.
+			So in case of 50% armor degradation and this value of 10% (0.1), range for random will be 45-55%
+		</description>
 	</string>
 	<string id="ui_mcm_mbo_arena_debug">
 		<text>Debug</text>

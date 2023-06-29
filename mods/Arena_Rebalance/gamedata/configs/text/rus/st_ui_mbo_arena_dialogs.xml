@@ -15,4 +15,23 @@
 	<string id="totaliz_non_grata_4">
 		<text>Другие зрители арены недовольны тем, что ты часто прогнозируешь матчи. Так что...  приходи попозже, когда все уляжется.</text>
 	</string>
+
+	<string id="totaliz_begin_mbo_bet_ask">
+		<text>Who are you betting on?</text>
+	</string>
+	<string id="total_reward_mbo_take_prize">
+		<text>Держи свой выигрыш.</text>
+	</string>
+	<string id="total_reward_mbo_bet_lost">
+		<text>Ничего, ты проиграл.</text>
+	</string>
+	<string id="totaliz_begin_mbo_0_0">
+		<text>Кабан против псевдособаки.</text>
+	</string>
+	<string id="totaliz_begin_mbo_0_1">
+		<text>На кабана слева.</text>
+	</string>
+	<string id="totaliz_begin_mbo_0_2">
+		<text>На псевдособаку справа.</text>
+	</string>
 </string_table>

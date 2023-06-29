@@ -138,13 +138,26 @@
 				<disable_info>total_group_stalker_2_death</disable_info>
 				<disable_info>total_group_stalker_3_death</disable_info>
 				<disable_info>total_group_stalker_4_death</disable_info>
+				<!-- START MBO Arena-->
+				<disable_info>total_fight_100</disable_info>
+
+				<disable_info>total_boar_left_mbo_0_bet</disable_info>
+				<disable_info>total_pseudodog_right_mbo_0_bet</disable_info>
+
+				<disable_info>total_boar_left_mbo_0_done</disable_info>
+				<disable_info>total_pseudodog_right_mbo_0_done</disable_info>
+
+				<disable_info>total_boar_left_mbo_0_death</disable_info>
+				<disable_info>total_pseudodog_right_mbo_0_death</disable_info>
+				<!-- END MBo Arena -->
 				<next>1</next>
 			</phrase>
 			<phrase id="1">
 				<text>totaliz_begin_1</text>
-				<next>2</next>
-				<next>3</next>
-				<next>5</next>
+				<next>2</next> <!-- human vs human -->
+				<next>3</next> <!-- human vs monster -->
+				<next>4</next> <!-- monster vs monster -->
+				<next>5</next> <!-- exit -->
 			</phrase>
 			<phrase id="2">
 				<text>totaliz_begin_2</text>
@@ -344,9 +357,10 @@
 			</phrase>
 			<phrase id="8">
 				<text>totaliz_begin_8</text>
-				<next>17</next>
-				<next>18</next>
-				<next>19</next>
+				<!-- <next>17</next> -->
+				<!-- <next>18</next> -->
+				<!-- <next>19</next> -->
+				<next>100</next>
 				<next>20</next>
 			</phrase>
 			<phrase id="17">
@@ -412,6 +426,29 @@
 				<give_info>total_fight_12</give_info>
 				<next>54</next>
 			</phrase>
+			<!-- START MBo Arena -->
+			<phrase id="100">
+				<text>totaliz_begin_mbo_0_0</text>
+				<next>101</next>
+			</phrase>
+			<phrase id="101">
+				<text>totaliz_begin_mbo_bet_ask</text>
+				<next>102</next>
+				<next>103</next>
+			</phrase>
+			<phrase id="102">
+				<text>totaliz_begin_mbo_0_1</text>
+				<give_info>total_boar_left_mbo_0_bet</give_info>
+				<give_info>total_fight_100</give_info>
+				<next>54</next>
+			</phrase>
+			<phrase id="103">
+				<text>totaliz_begin_mbo_0_2</text>
+				<give_info>total_pseudodog_right_mbo_0_bet</give_info>
+				<give_info>total_fight_100</give_info>
+				<next>54</next>
+			</phrase>
+			<!-- END MBo Arena -->
 			<phrase id="54">
 				<text>totaliz_begin_54</text>
 				<next>55</next>
@@ -489,7 +526,7 @@
 				<next>13</next>
 				<next>14</next>
 				<next>15</next>
-				<!-- <next>16</next> -->
+				<next>16</next>
 				<next>17</next>
 				<next>18</next>
 				<next>19</next>
@@ -512,6 +549,11 @@
 				<next>36</next>
 				<next>37</next>
 				<next>38</next>
+				<!-- MBo Arena -->
+				<next>100</next>
+				<next>101</next>
+				<next>102</next>
+				<next>103</next>
 			</phrase>
 			<phrase id="1">
 				<dont_has_info>total_stalker_left_death</dont_has_info>
@@ -763,6 +805,35 @@
 				<text>total_reward_dialog_1000_38</text>
 				<give_info>total_reward_over_dialog</give_info>
 			</phrase>
+			<!-- MBo Arena -->
+			<phrase id="100">
+				<dont_has_info>total_boar_left_mbo_0_death</dont_has_info>
+				<has_info>total_boar_left_mbo_0_done</has_info>
+				<has_info>total_boar_left_mbo_0_bet</has_info>
+				<text>total_reward_mbo_take_prize</text>
+				<give_info>total_reward_over_dialog</give_info>
+				<action>dialogs_mlr.total_reward_1000</action>
+			</phrase>
+			<phrase id="101">
+				<dont_has_info>total_pseudodog_right_mbo_0_death</dont_has_info>
+				<has_info>total_pseudodog_right_mbo_0_done</has_info>
+				<has_info>total_pseudodog_right_mbo_0_bet</has_info>
+				<text>total_reward_mbo_take_prize</text>
+				<give_info>total_reward_over_dialog</give_info>
+				<action>dialogs_mlr.total_reward_1000</action>
+			</phrase>
+			<phrase id="102">
+				<has_info>total_boar_left_mbo_0_death</has_info>
+				<has_info>total_boar_left_mbo_0_bet</has_info>
+				<text>total_reward_mbo_bet_lost</text>
+				<give_info>total_reward_over_dialog</give_info>
+			</phrase>
+			<phrase id="103">
+				<has_info>total_pseudodog_right_mbo_0_death</has_info>
+				<has_info>total_pseudodog_right_mbo_0_bet</has_info>
+				<text>total_reward_mbo_bet_lost</text>
+				<give_info>total_reward_over_dialog</give_info>
+			</phrase>
 		</phrase_list>
 	</dialog>
 	<dialog id="total_reward_dialog_2500">
@@ -788,7 +859,7 @@
 				<next>13</next>
 				<next>14</next>
 				<next>15</next>
-				<!-- <next>16</next> -->
+				<next>16</next>
 				<next>17</next>
 				<next>18</next>
 				<next>19</next>
@@ -811,6 +882,11 @@
 				<next>36</next>
 				<next>37</next>
 				<next>38</next>
+				<!-- MBo Arena -->
+				<next>100</next>
+				<next>101</next>
+				<next>102</next>
+				<next>103</next>
 			</phrase>
 			<phrase id="1">
 				<dont_has_info>total_stalker_left_death</dont_has_info>
@@ -1062,6 +1138,35 @@
 				<text>total_reward_dialog_2500_38</text>
 				<give_info>total_reward_over_dialog</give_info>
 			</phrase>
+			<!-- MBo Arena -->
+			<phrase id="100">
+				<dont_has_info>total_boar_left_mbo_0_death</dont_has_info>
+				<has_info>total_boar_left_mbo_0_done</has_info>
+				<has_info>total_boar_left_mbo_0_bet</has_info>
+				<text>total_reward_mbo_take_prize</text>
+				<give_info>total_reward_over_dialog</give_info>
+				<action>dialogs_mlr.total_reward_2500</action>
+			</phrase>
+			<phrase id="101">
+				<dont_has_info>total_pseudodog_right_mbo_0_death</dont_has_info>
+				<has_info>total_pseudodog_right_mbo_0_done</has_info>
+				<has_info>total_pseudodog_right_mbo_0_bet</has_info>
+				<text>total_reward_mbo_take_prize</text>
+				<give_info>total_reward_over_dialog</give_info>
+				<action>dialogs_mlr.total_reward_2500</action>
+			</phrase>
+			<phrase id="102">
+				<has_info>total_boar_left_mbo_0_death</has_info>
+				<has_info>total_boar_left_mbo_0_bet</has_info>
+				<text>total_reward_mbo_bet_lost</text>
+				<give_info>total_reward_over_dialog</give_info>
+			</phrase>
+			<phrase id="103">
+				<has_info>total_pseudodog_right_mbo_0_death</has_info>
+				<has_info>total_pseudodog_right_mbo_0_bet</has_info>
+				<text>total_reward_mbo_bet_lost</text>
+				<give_info>total_reward_over_dialog</give_info>
+			</phrase>
 		</phrase_list>
 	</dialog>
 	<dialog id="total_reward_dialog_5000">
@@ -1087,7 +1192,7 @@
 				<next>13</next>
 				<next>14</next>
 				<next>15</next>
-				<!-- <next>16</next> -->
+				<next>16</next>
 				<next>17</next>
 				<next>18</next>
 				<next>19</next>
@@ -1110,6 +1215,11 @@
 				<next>36</next>
 				<next>37</next>
 				<next>38</next>
+				<!-- MBo Arena -->
+				<next>100</next>
+				<next>101</next>
+				<next>102</next>
+				<next>103</next>
 			</phrase>
 			<phrase id="1">
 				<dont_has_info>total_stalker_left_death</dont_has_info>
@@ -1359,6 +1469,35 @@
 				<has_info>total_burer_with_two_soldiers_death</has_info>
 				<has_info>total_burer_with_two_soldiers</has_info>
 				<text>total_reward_dialog_5000_38</text>
+				<give_info>total_reward_over_dialog</give_info>
+			</phrase>
+			<!-- MBo Arena -->
+			<phrase id="100">
+				<dont_has_info>total_boar_left_mbo_0_death</dont_has_info>
+				<has_info>total_boar_left_mbo_0_done</has_info>
+				<has_info>total_boar_left_mbo_0_bet</has_info>
+				<text>total_reward_mbo_take_prize</text>
+				<give_info>total_reward_over_dialog</give_info>
+				<action>dialogs_mlr.total_reward_5000</action>
+			</phrase>
+			<phrase id="101">
+				<dont_has_info>total_pseudodog_right_mbo_0_death</dont_has_info>
+				<has_info>total_pseudodog_right_mbo_0_done</has_info>
+				<has_info>total_pseudodog_right_mbo_0_bet</has_info>
+				<text>total_reward_mbo_take_prize</text>
+				<give_info>total_reward_over_dialog</give_info>
+				<action>dialogs_mlr.total_reward_5000</action>
+			</phrase>
+			<phrase id="102">
+				<has_info>total_boar_left_mbo_0_death</has_info>
+				<has_info>total_boar_left_mbo_0_bet</has_info>
+				<text>total_reward_mbo_bet_lost</text>
+				<give_info>total_reward_over_dialog</give_info>
+			</phrase>
+			<phrase id="103">
+				<has_info>total_pseudodog_right_mbo_0_death</has_info>
+				<has_info>total_pseudodog_right_mbo_0_bet</has_info>
+				<text>total_reward_mbo_bet_lost</text>
 				<give_info>total_reward_over_dialog</give_info>
 			</phrase>
 		</phrase_list>
