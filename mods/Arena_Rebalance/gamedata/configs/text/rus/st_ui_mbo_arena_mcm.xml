@@ -3,45 +3,63 @@
 <!-- mbo arena -->
 <string_table>
 	<string id="ui_mcm_menu_mbo_arena">
-		<text>MBo Arena Overhaul Config</text>
+		<text>Arena Overhaul Config</text>
 	</string>
 	<string id="ui_mcm_mbo_arena_title">
 		<text>MBo Arena Overhaul Config</text>
 	</string>
+
 	<string id="ui_mcm_mbo_arena_price_limit">
 		<text>Общая сумма лимита для "нон грата"</text>
-		<description>
-			Выигранная сумма от ставок до бана на арене. Установите этот параметр или дневной лимит на 0, если вы хотите выключить данную опцию
-		</description>
 	</string>
+	<string id="ui_mcm_mbo_arena_price_limit_descr">
+		<text>
+			Выигранная сумма от ставок до бана на арене. Установите этот параметр или дневной лимит на 0,
+			если вы хотите выключить данную опцию
+		</text>
+	</string>
+
 	<string id="ui_mcm_mbo_arena_days_limit">
 		<text>Сброс "нон грата" (дни)</text>
-		<description>
-			Когда "нон грата" статус будет снят. Установите этот параметр или общую сумму лимита на 0, если вы хотите выключить данную опцию
-		</description>
 	</string>
+	<string id="ui_mcm_mbo_arena_days_limit_descr">
+		<text>
+			Когда "нон грата" статус будет снят. Установите этот параметр или общую сумму лимита на 0,
+			если вы хотите выключить данную опцию
+		</text>
+	</string>
+
 	<string id="ui_mcm_mbo_arena_reminder_delta">
 		<text>Фактор запоминания (минуты)</text>
-		<description>
+	</string>
+	<string id="ui_mcm_mbo_arena_reminder_delta_descr">
+		<text>
 			Как быстро вы можете пройти порог предельной цены, чтобы вам запретили делать ставки.
 			Уменьшение этого фактора приводит к более быстрому обновлению ценового лимита.
 			Рекомендуется оставить это значение по умолчанию, только если вы хотите поэкспериментировать.
-		</description>
+		</text>
 	</string>
+
 	<string id="ui_mcm_mbo_arena_degradation_coeff">
 		<text>Базовый начальный коэффициент деградации для выданых вещей (%)</text>
-		<description>
+	</string>
+	<string id="ui_mcm_mbo_arena_degradation_coeff_descr">
+		<text>
 			Это множитель для брони и оружия арены. Таким образом, если ваша броня имеет 100%,
 			при коэффициенте деградации 0,5 ваша броня будет с 50% прочности.
-		</description>
+		</text>
 	</string>
+
 	<string id="ui_mcm_mbo_arena_degradation_rand_range">
 		<text>Случайный диапазон для ухудшения (%)</text>
-		<description>
+	</string>
+	<string id="ui_mcm_mbo_arena_degradation_rand_range_descr">
+		<text>
 			Это диапазон для получения случайности от коэффициента деградации.
 			Таким образом, в случае 50% прочности брони и этого значения 0.1 (10%), прочность будет варироватся 45-55%.
-		</description>
+		</text>
 	</string>
+
 	<string id="ui_mcm_mbo_arena_debug">
 		<text>Дебаг</text>
 	</string>
