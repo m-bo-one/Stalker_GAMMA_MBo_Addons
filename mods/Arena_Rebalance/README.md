@@ -20,9 +20,11 @@ MOD SHOULD be loaded after:
  - rebalanced items for each stage, returned more as in SoC, just with some modifications
  - return back some totalizator fights (stalkers vs bandits, freedom vs dolg, bloodsucker vs 2 bandits, zombies vs 1 dolg, rest should be rebalanced and fixed, not done yet :()
  - add weapon and armor condition degradation (configurable in MCM), more interesting to play when gun is not shooting xD
+ - added "non grata" limit for totalizator when players wins and reach some threashold to avoid become so rich from arena
 
 ### Currently working on:
- - added "non grata" limit for totalizator when players wins and reach some threashold to avoid become so rich
+ - fixing existing fights like 2 army vs burer (burer stuck), 2 bandits vs bloodsucker (bandits always win, could not change a weapon, maybe will make a one bandit)
+ - research how to make mutants vs mutants works
 
 
 ### Plans (does not mean that 100% will be done, but I want to try):

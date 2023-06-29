@@ -1,0 +1,82 @@
+--[[
+Arena module for store data in save file
+Author: m-bo-one
+--]]
+
+-- imports
+local get_game_timestamp = mbo_arena_utils.get_game_timestamp
+local print_dbg = mbo_arena_utils.print_dbg
+local get_config = mbo_arena_mcm.get_config
+
+-- store
+local mbo_arena_tbl = {}
+
+-- functions
+
+local function new_reminder_time()
+    local reminder_delta = get_config("reminder_delta")
+    return get_game_timestamp() + reminder_delta * 60 * level.get_time_factor()
+end
+
+local function new_ban_time()
+    local days_limit = get_config("days_limit")
+    return get_game_timestamp() + days_limit * 24 * 60 * 60 * level.get_time_factor()
+end
+
+function actor_is_non_grata()
+    local non_grata = mbo_arena_tbl["non_grata"]
+    if non_grata == nil then
+        return false
+    end
+    return non_grata.ban_time >= get_game_timestamp()
+end
+
+-- do all jod for won/lost amount
+function update_non_grata_info(amount)
+    local price_limit = get_config("price_limit")
+
+    local now = get_game_timestamp()
+
+    local non_grata = mbo_arena_tbl["non_grata"]
+    if non_grata == nil or (
+        non_grata.reminder_time < now and
+        non_grata.ban_time < now
+    ) then
+        non_grata = {
+            reminder_time = new_reminder_time(),
+            ban_time = 0,
+            total_supply = 0,
+        }
+    end
+
+    -- taking max currently to faster make a non grata, maybe not needed?
+    non_grata.total_supply = math.max(non_grata.total_supply + amount, 0)
+
+    if non_grata.total_supply >= price_limit then
+        non_grata.ban_time = new_ban_time()
+    end
+
+    print_dbg(
+        "update ngr info | reminder_time: %s (s) | ban_time: %s (s) | total_supply: %s",
+        non_grata.reminder_time,
+        non_grata.ban_time,
+        non_grata.total_supply
+    )
+
+    mbo_arena_tbl["non_grata"] = non_grata
+end
+
+function save_state(m_data)
+    m_data.mbo_arena_tbl = mbo_arena_tbl
+    print_dbg("# SAVING: Arena items | number of saved items: %s", size_table(mbo_arena_tbl))
+end
+
+function load_state(m_data)
+    mbo_arena_tbl = m_data.mbo_arena_tbl or {}
+    print_dbg("# LOADING: Arena items | number of saved items: %s", size_table(mbo_arena_tbl))
+end
+
+function on_game_start()
+    RegisterScriptCallback("save_state", save_state)
+    RegisterScriptCallback("load_state", load_state)
+end

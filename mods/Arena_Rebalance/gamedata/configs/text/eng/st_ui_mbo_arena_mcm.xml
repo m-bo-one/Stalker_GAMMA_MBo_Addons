@@ -14,6 +14,9 @@
 	<string id="ui_mcm_mbo_arena_days_limit">
 		<text>"Non grata" removal (days)</text>
 	</string>
+	<string id="ui_mcm_mbo_arena_reminder_delta">
+		<text>Reminder factor (mins)</text>
+	</string>
 	<string id="ui_mcm_mbo_arena_degradation_coeff">
 		<text>Base start coeff to degradate of given equipment (%)</text>
 	</string>

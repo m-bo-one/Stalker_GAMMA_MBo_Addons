@@ -14,6 +14,9 @@
 	<string id="ui_mcm_mbo_arena_days_limit">
 		<text>Сброс "нон грата" (дни)</text>
 	</string>
+	<string id="ui_mcm_mbo_arena_reminder_delta">
+		<text>Фактор запоминания (минуты)</text>
+	</string>
 	<string id="ui_mcm_mbo_arena_degradation_coeff">
 		<text>Базовый начальный коэффициент деградации для выданых вещей (%)</text>
 	</string>

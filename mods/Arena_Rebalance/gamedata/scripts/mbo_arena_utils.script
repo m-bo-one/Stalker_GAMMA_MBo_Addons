@@ -1,9 +1,11 @@
 --[[
-Utils for future development
-26JUN2023
-This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
+Arena module for utils
 Author: m-bo-one
 --]]
+
+function get_game_timestamp()
+    return math.ceil(game.time() / 1000)
+end
 
 local function starts_with(str, start)
     return str:sub(1, #start) == start

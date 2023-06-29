@@ -1,7 +1,13 @@
+--[[
+Arena module for mcm setup
+Author: m-bo-one
+--]]
+
 -- If you don't use MCM, change your defaults from here.
 local defaults = {
     price_limit = 25000,
-    days_limit = 2,
+    days_limit = 2, -- days
+    reminder_delta = 60, -- minutes
     degradation_coeff = 0.8,
     degradation_rand_range = 0.15,
     debug = false
@@ -38,6 +44,14 @@ function on_mcm_load()
             max = 7,
             step = 1,
             def = 2
+        }, {
+            id = "reminder_delta",
+            type = "track",
+            val = 2,
+            min = 1,
+            max = 60,
+            step = 1,
+            def = 30
         }, {
             id = "degradation_coeff",
             type = "track",

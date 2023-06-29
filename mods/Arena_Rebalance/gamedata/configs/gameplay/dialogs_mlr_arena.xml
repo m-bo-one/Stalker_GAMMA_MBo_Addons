@@ -16,6 +16,7 @@
 	</dialog>
 	<dialog id="totaliz_non_grata">
 		<precondition>mbo_arena_dialogs.totaliz_non_grata</precondition>
+		<dont_has_info>totaliz_begin_over_dialog</dont_has_info>
 		<has_info>totaliz_pre</has_info>
 		<phrase_list>
 			<phrase id="0">

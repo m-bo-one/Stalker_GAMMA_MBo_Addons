@@ -1,7 +1,5 @@
 --[[
 Arena module related for patching totaliz and campaign arena
-26JUN2023
-This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
 Author: m-bo-one
 --]]
 
@@ -216,11 +214,54 @@ local function make_enemy(actor, npc, p)
     npc2:set_relation(game_object.enemy, npc1)
 end
 
+local function take_totaliz_1(first_speaker, second_speaker)
+    local amount = 1000
+	dialogs.relocate_money_from_actor(first_speaker, second_speaker, amount)
+    mbo_arena_storage.update_non_grata_info(-amount)
+end
+
+local function take_totaliz_2(first_speaker, second_speaker)
+    local amount = 2500
+    mbo_arena_utils.print_dbg("take_totaliz_2: %s", amount)
+	dialogs.relocate_money_from_actor(first_speaker, second_speaker, amount)
+    mbo_arena_storage.update_non_grata_info(-amount)
+end
+
+local function take_totaliz_5(first_speaker, second_speaker)
+    local amount = 5000
+	dialogs.relocate_money_from_actor(first_speaker, second_speaker, amount)
+    mbo_arena_storage.update_non_grata_info(-amount)
+end
+
+local function total_reward_1000(actor, npc, p)
+    local amount = math.random(2000, 4000)
+	dialogs.relocate_money(db.actor, amount,"in")
+    mbo_arena_storage.update_non_grata_info(amount)
+end
+
+local function total_reward_2500(actor, npc, p)
+    local amount = math.random(3500, 6000)
+	dialogs.relocate_money(db.actor, amount,"in")
+    mbo_arena_storage.update_non_grata_info(amount)
+end
+
+local function total_reward_5000(actor, npc, p)
+    local amount = math.random(7000, 15000)
+	dialogs.relocate_money(db.actor, amount, "in")
+    mbo_arena_storage.update_non_grata_info(amount)
+end
+
 -- !!!!!!!!!!!!!!
 -- monkeypatching
 
 -- dialogs_mlr.script
 dialogs_mlr.teleport_for_totaliz = teleport_for_totaliz
+dialogs_mlr.take_totaliz_1 = take_totaliz_1
+dialogs_mlr.take_totaliz_2 = take_totaliz_2
+dialogs_mlr.take_totaliz_5 = take_totaliz_5
+dialogs_mlr.total_reward_1000 = total_reward_1000
+dialogs_mlr.total_reward_2500 = total_reward_2500
+dialogs_mlr.total_reward_5000 = total_reward_5000
 
 -- xr_effects.script
 xr_effects.bar_arena_teleport = bar_arena_teleport
