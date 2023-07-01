@@ -1,7 +1,8 @@
 <fomod>
 	<Name>MBo Arena Rebalance</Name>
 	<Author>MBo</Author>
-	<Version>1.0</Version>
+	<Version>1.2</Version>
+    <Website>https://www.moddb.com/mods/stalker-anomaly/addons/food-drug-and-drinks-animations-reuploaded/</Website>
 	<Description>
     Resurect of arena totalizator and additional rebalance and fixes for storyline arena. Still under development,
     please let me know in case of bugs. Integrated with **MCM**
@@ -19,5 +20,6 @@
     - add weapon and armor condition degradation (configurable in MCM), more interesting to play when gun is not shooting and you do not see anything in helm xD
     - added "non grata" limit for totalizator to avoid be rich just sitting on arena (not possible to abuse via saves)
     - added Boar vs Pseudosodog (currently 5:1 unfortunatelly, but will be fixed by bet coefficient later)
+    - added DLTX/DXML
     </Description>
 </fomod>

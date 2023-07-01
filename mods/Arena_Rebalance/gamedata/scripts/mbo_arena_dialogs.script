@@ -3,8 +3,6 @@ Arena module for dialogs
 Author: m-bo-one
 --]]
 
-local non_grata = true
-
 -- Checked for non grata, if passed, kick actor and play some sound
 function totaliz_non_grata()
     return mbo_arena_storage.actor_is_non_grata()

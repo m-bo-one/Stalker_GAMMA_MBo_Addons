@@ -1,0 +1,9 @@
+![sr_idle@idle]
+% -- MBo Arena
+on_info100 = {+total_fight_100 +totaliz_money_has_gone} sr_idle@teleport %=spawn_object(total_boar_left_mbo_0:bar_arena_wait_walk_3:0) =spawn_object(total_pseudodog_right_mbo_0:t_look:0)%
+
+![sr_idle@teleport]
+% -- MBo Arena
+on_info100 = {+total_boar_left_mbo_0_death} sr_idle@timer %+total_fight_is_over +total_pseudodog_right_mbo_0_done%
+on_info101 = {+total_pseudodog_right_mbo_0_death} sr_idle@timer %+total_fight_is_over +total_boar_left_mbo_0_done%
+

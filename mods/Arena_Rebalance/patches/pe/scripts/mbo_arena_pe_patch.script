@@ -1,0 +1,27 @@
+--[[
+Patch for Powered Exos
+Author: m-bo-one
+--]]
+
+local print_dbg = mbo_arena_utils.print_dbg
+
+local def_iaefa_callback = mbo_arena_items_patch.inventory_auto_equip_for_arena_callback
+
+function inventory_auto_equip_for_arena_callback(equiped)
+    def_iaefa_callback(equiped)
+
+    -- battery amplification, currently only for last tournament
+    local outfit = equiped["outfit"]
+    if outfit ~= nil and item_exo_device.is_exo(outfit) then
+        print_dbg("activate battery")
+
+        local data = item_exo_device.get_data(outfit:id())
+        if not data then
+            data = item_exo_device.init_data(outfit:id())
+        end
+        data.power = 100 -- free power
+        item_exo_device.set_data(outfit:id(), data)
+    end
+end
+
+mbo_arena_items_patch.inventory_auto_equip_for_arena_callback = inventory_auto_equip_for_arena_callback

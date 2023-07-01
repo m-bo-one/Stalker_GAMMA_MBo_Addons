@@ -1,0 +1,83 @@
+--[[
+Patching arena items. This could be overriden if you need customization
+Author: m-bo-one
+--]]
+
+_G.mbo_arena_items = {
+    ["bar_arena_fight_1"] = {
+        "wpn_knife",
+        "wpn_pm",
+        "ammo_9x18_pmm",
+        "helm_cloth_mask",
+        "novice_outfit",
+    },
+    ["bar_arena_fight_2"] = {
+        "wpn_knife",
+        "wpn_mp5",
+        "ammo_9x19_fmj",
+        "ammo_9x19_fmj",
+        "helm_cloth_mask",
+        "novice_outfit",
+    },
+    ["bar_arena_fight_3"] = {
+        "wpn_knife",
+        "wpn_bm16",
+        "ammo_12x70_buck",
+        "helm_cloth_mask",
+        "novice_outfit",
+    },
+    ["bar_arena_fight_4"] = {
+        "wpn_knife",
+        "wpn_ak74m",
+        "ammo_5.45x39_fmj",
+        "ammo_5.45x39_fmj",
+        "helm_respirator_old",
+        "stalker_outfit",
+        "bandage",
+        "bandage",
+    },
+    ["bar_arena_fight_5"] = {
+        "wpn_knife",
+        "wpn_abakan",
+        "ammo_5.45x39_ap",
+        "ammo_5.45x39_ap",
+        "helm_resp",
+        "svoboda_light_outfit",
+        "medkit",
+        "bandage",
+    },
+    ["bar_arena_fight_6"] = {
+        "wpn_knife",
+        "wpn_groza",
+        "ammo_9x39_ap",
+        "ammo_9x39_ap",
+        "grenade_f1",
+        "helm_tactic",
+        "specops_outfit",
+        "medkit_army",
+    },
+    ["bar_arena_fight_7"] = {
+        "wpn_knife",
+        "grenade_f1",
+        "grenade_f1",
+        "helm_cloth_mask",
+        "greh_trenchcoat_outfit",
+    },
+    ["bar_arena_fight_8"] = {
+        "wpn_knife",
+        "wpn_g36",
+        "ammo_5.56x45_ap",
+        "ammo_5.56x45_ap",
+        "helm_exo",
+        "exo_outfit",
+    },
+}
+
+function get_arena_items()
+    -- maybe create a copy?
+    return _G.mbo_arena_items
+end
+
+-- this could be inherited
+function inventory_auto_equip_for_arena_callback(equiped)
+end

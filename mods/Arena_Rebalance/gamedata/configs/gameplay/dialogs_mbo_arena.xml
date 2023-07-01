@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <game_dialogs>
-	<dialog id="totaliz_pre">
+	<dialog id="mbo_arena_totaliz_pre">
 		<has_info>bar_arena_fight_8_done</has_info>
 		<dont_has_info>totaliz_pre</dont_has_info>
 		<phrase_list>
@@ -14,7 +14,7 @@
 			</phrase>
 		</phrase_list>
 	</dialog>
-	<dialog id="totaliz_non_grata">
+	<dialog id="mbo_arena_totaliz_non_grata">
 		<precondition>mbo_arena_dialogs.totaliz_non_grata</precondition>
 		<dont_has_info>totaliz_begin_over_dialog</dont_has_info>
 		<has_info>totaliz_pre</has_info>
@@ -43,7 +43,7 @@
 			</phrase>
 		</phrase_list>
 	</dialog>
-	<dialog id="totaliz_begin">
+	<dialog id="mbo_arena_totaliz_begin">
 		<precondition>mbo_arena_dialogs.totaliz_not_non_grata</precondition>
 		<dont_has_info>totaliz_begin_over_dialog</dont_has_info>
 		<has_info>totaliz_pre</has_info>
@@ -426,6 +426,7 @@
 				<give_info>total_fight_12</give_info>
 				<next>54</next>
 			</phrase>
+
 			<!-- START MBo Arena -->
 			<phrase id="100">
 				<text>totaliz_begin_mbo_0_0</text>
@@ -448,6 +449,7 @@
 				<give_info>total_fight_100</give_info>
 				<next>54</next>
 			</phrase>
+
 			<!-- END MBo Arena -->
 			<phrase id="54">
 				<text>totaliz_begin_54</text>
@@ -503,7 +505,7 @@
 			</phrase>
 		</phrase_list>
 	</dialog>
-	<dialog id="total_reward_dialog_1000">
+	<dialog id="mbo_arena_total_reward_dialog_1000">
 		<dont_has_info>total_reward_over_dialog</dont_has_info>
 		<has_info>totaliz_money_has_gone_1000</has_info>
 		<has_info>total_fight_is_over</has_info>
@@ -836,7 +838,7 @@
 			</phrase>
 		</phrase_list>
 	</dialog>
-	<dialog id="total_reward_dialog_2500">
+	<dialog id="mbo_arena_total_reward_dialog_2500">
 		<dont_has_info>total_reward_over_dialog</dont_has_info>
 		<has_info>totaliz_money_has_gone_2500</has_info>
 		<has_info>total_fight_is_over</has_info>
@@ -1169,7 +1171,7 @@
 			</phrase>
 		</phrase_list>
 	</dialog>
-	<dialog id="total_reward_dialog_5000">
+	<dialog id="mbo_arena_total_reward_dialog_5000">
 		<dont_has_info>total_reward_over_dialog</dont_has_info>
 		<has_info>totaliz_money_has_gone_5000</has_info>
 		<has_info>total_fight_is_over</has_info>

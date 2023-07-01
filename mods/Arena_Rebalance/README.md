@@ -8,9 +8,6 @@ I looking also for a way to mokeypatch dynamically xml so no need to copy a bunc
 MOD SHOULD be loaded after:
  - Grok's and Darkasleif's Armor Exchange (because of character_desc_bar.xml, it has some fixes for arena communities or simply factions)
 
-### Requirements:
- - G.A.M.M.A (with love made only currently for this Anomaly modpack)
-
 ### Current Arena fixes:
  - rework items unequipment (currently all will be in the arena box after the match);
  - automatically equip items on arena (totally, I frustrated about this, why it was not designed);
@@ -24,6 +21,8 @@ MOD SHOULD be loaded after:
  - add weapon and armor condition degradation (configurable in MCM), more interesting to play when gun is not shooting and you do not see anything in helm xD
  - added "non grata" limit for totalizator to avoid be rich just sitting on arena (not possible to abuse via saves)
  - added Boar vs Pseudosodog (currently 5:1 unfortunatelly, but will be fixed by bet coefficient later)
+ - added DLTX/DXML
+ - change agro mechanics for arena enemy, so right now much more better agro on player
 
 ### Currently working on:
  - add more mutant fights

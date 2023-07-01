@@ -5,10 +5,10 @@
     <installStep name="">
       <optionalFileGroups order="Explicit">
         <group name="Main Files" type="SelectAny">
-          <plugins order="Ascending">
+          <plugins order="Explicit">
             <plugin name="Core">
               <description>
-                Resurect of arena totalizator and additional rebalance and fixes for storyline arena.
+                [DLTX] Resurect of arena totalizator and additional rebalance and fixes for storyline arena.
 
 ### Current Arena fixes:
 - rework items unequipment (currently all will be in the arena box after the match);
@@ -23,6 +23,7 @@
 - add weapon and armor condition degradation (configurable in MCM), more interesting to play when gun is not shooting and you do not see anything in helm xD
 - added "non grata" limit for totalizator to avoid be rich just sitting on arena (not possible to abuse via saves)
 - added Boar vs Pseudosodog (currently 5:1 unfortunatelly, but will be fixed by bet coefficient later)
+- added DLTX/DXML
               </description>
               <image path="fomod\images\icon.jpg"/>
               <files>
@@ -31,6 +32,28 @@
               <typeDescriptor>
                 <type name="Required"/>
               </typeDescriptor>
+            </plugin>
+            <plugin name="Boomsticks and Sharpsticks Patch">
+              <description>
+                Only if you are using Boomsticks and Sharpsticks (&lt;b&gt;required&lt;/b&gt; for G.A.M.M.A)
+              </description>
+              <files>
+                <folder source="patches\bas" destination="gamedata" priority="1" alwaysInstall="true" installIfUsable="false"/>
+              </files>
+							<typeDescriptor>
+								<type name="Optional"/>
+							</typeDescriptor>
+            </plugin>
+            <plugin name="Powered Exos Patch">
+              <description>
+                Only if you are using Powered Exos (&lt;b&gt;required&lt;/b&gt; for G.A.M.M.A)
+              </description>
+              <files>
+                <folder source="patches\pe" destination="gamedata" priority="2" alwaysInstall="true" installIfUsable="false"/>
+              </files>
+							<typeDescriptor>
+								<type name="Optional"/>
+							</typeDescriptor>
             </plugin>
           </plugins>
         </group>

@@ -1,0 +1,146 @@
+--[[
+XML Patching
+Author: m-bo-one
+--]]
+
+-- imports
+local print_dbg = mbo_arena_utils.print_dbg
+
+local function specific_character_init()
+    -- var here to garbage collect
+    local characters_to_override = {
+        -- change Arni money state
+        ["bar_arena_manager"] = {
+            money_min = 25000,
+            money_max = 100000,
+            money_infinitive = true,
+        },
+
+        -- story arena
+        ["bar_arena_stalker_4_1"] = {
+            community = "bandit",
+        },
+        ["bar_arena_stalker_4_2"] = {
+            community = "bandit",
+        },
+        ["bar_arena_stalker_4_3"] = {
+            community = "bandit",
+        },
+        ["bar_arena_stalker_4_4"] = {
+            community = "stalker",
+        },
+        ["bar_arena_stalker_4_5"] = {
+            community = "stalker",
+        },
+        ["bar_arena_stalker_8_1"] = {
+            community = "monolith",
+        },
+        ["bar_arena_stalker_8_2"] = {
+            community = "killer",
+        },
+        ["bar_arena_stalker_8_3"] = {
+            community = "bandit",
+        },
+        ["bar_arena_stalker_8_4"] = {
+            community = "army",
+        },
+
+        -- totaliz
+        ["total_group_bandits_with_bloodsucker_1"] = {
+            icon = "ui_inGame2_bandit_1_mask",
+            visual = [[actors\stalker_bandit\stalker_bandit1b_mask]],
+            supplies =
+[[
+[spawn]
+ wpn_toz34_obrez
+ ammo_12x70_buck = 1
+]],
+        },
+        ["total_group_bandits_with_bloodsucker_2"] = {
+            icon = "ui_inGame2_bandit_1b",
+            visual = [[actors\stalker_bandit\stalker_bandit1b]],
+            supplies =
+[[
+[spawn]
+ wpn_bm16
+ ammo_12x70_buck = 1
+]],
+        },
+    }
+
+    RegisterScriptCallback("on_specific_character_init", function(character_id, data)
+        local character = characters_to_override[character_id]
+        if character == nil then
+            return
+        end
+
+        for key, value in pairs(character) do
+            print_dbg(
+                "DXML | character update | character_id: %s | key=%s, value=%s",
+                character_id, key, value
+            )
+            data[key] = value
+        end
+    end)
+end
+
+local function specific_character_dialog_list()
+    -- var here to garbage collect
+    local character_dialogs_to_override = {
+        ["bar_arena_manager"] = {
+            insert_after = "bar_arena_manager_game",
+            dialogs_to_remove = {
+                totaliz_pre = true,
+                totaliz_non_grata = true,
+                totaliz_begin = true,
+                total_reward_dialog_1000 = true,
+                total_reward_dialog_2500 = true,
+                total_reward_dialog_5000 = true,
+            },
+            dialogs_to_add = {
+                "mbo_arena_totaliz_pre",
+                "mbo_arena_totaliz_non_grata",
+                "mbo_arena_totaliz_begin",
+                "mbo_arena_total_reward_dialog_1000",
+                "mbo_arena_total_reward_dialog_2500",
+                "mbo_arena_total_reward_dialog_5000",
+            },
+        },
+    }
+
+    RegisterScriptCallback("on_specific_character_dialog_list", function(character_id, dialog_list)
+        local character_dialogs = character_dialogs_to_override[character_id]
+        if character_dialogs == nil then
+            return
+        end
+
+        for _, dialog_str in ipairs(dialog_list:get_dialogs()) do
+            if character_dialogs.dialogs_to_remove[dialog_str] then
+                dialog_list:remove(dialog_str)
+                print_dbg(
+                    "DXML | character removing dialog | character_id: %s | dialog_str=%s",
+                    character_id, dialog_str
+                )
+            end
+        end
+
+        local insert_index = dialog_list:has(character_dialogs.insert_after)
+        if insert_index ~= nil then
+            insert_index = insert_index + 1
+            for _, dialog_str in ipairs(character_dialogs.dialogs_to_add) do
+                if dialog_list:add(dialog_str, insert_index) then
+                    print_dbg(
+                        "DXML | character adding dialog | character_id: %s | dialog_str=%s",
+                        character_id, dialog_str
+                    )
+                    insert_index = insert_index + 1
+                end
+            end
+        end
+    end)
+end
+
+function on_game_start()
+    specific_character_init()
+    specific_character_dialog_list()
+end

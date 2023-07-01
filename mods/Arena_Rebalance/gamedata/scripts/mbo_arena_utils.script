@@ -60,10 +60,10 @@ function apply_degradation(item)
         )
         item:set_condition(random_coeff / 100)
 
-        if IsWeapon(obj) then
-            print_dbg("degrade wpn parts")
-            item_parts.evaluate_parts(item)
-        end
+        -- if IsWeapon(obj) then
+        --     print_dbg("degrade wpn parts")
+        --     item_parts.evaluate_parts(item)
+        -- end
     end
 end
 
@@ -87,6 +87,8 @@ function change_ammo(wpn, ammo, remove_prv_ammo)
     end
 end
 
+-- th
+
 -- TODO: Add pluggable knife
 function inventory_auto_equip_for_arena()
     -- triggering event as items will be in added also in callback, so queue ordering
@@ -100,6 +102,17 @@ function inventory_auto_equip_for_arena()
                 equiped["binoc"] = item
             elseif equiped["helm"] == nil and is_helmet(item) then
                 db.actor:move_to_slot(item, 12)
+
+                -- for separated helms
+                CreateTimeEvent("mbo_arena", "separated_helm_update", 2, function()
+                    if not db.actor:item_in_slot(12) then
+                        print_dbg("remove helm as outfit without it")
+                        alife_release(equiped["helm"])
+                        equiped["helm"] = nil
+                    end
+                    RemoveTimeEvent("mbo_arena", "separated_helm_update")
+                end)
+
                 equiped["helm"] = item
                 apply_degradation(item)
             elseif equiped["outfit"] == nil and item:is_outfit() then
@@ -120,8 +133,6 @@ function inventory_auto_equip_for_arena()
                     equiped["wpn_slot_2"] = item
                     apply_degradation(item)
                 end
-            elseif equiped["exo_battery"] == nil and item:section() == "batteries_exo" then
-                equiped["exo_battery"] = item
             elseif is_ammo(item) then
                 if equiped["ammos"] == nil then
                     equiped["ammos"] = {}
@@ -131,47 +142,30 @@ function inventory_auto_equip_for_arena()
         end
         db.actor:inventory_for_each(add_to_slot)
 
-        -- item_exo_device.script dependency
-        -- battery amplification, currently only for last tournament
-        local exo_battery = equiped["exo_battery"]
-        local outfit = equiped["outfit"]
-        if exo_battery ~= nil and outfit ~= nil and item_exo_device.is_exo(outfit) then
-            print_dbg("activate battery")
-
-            local data = item_exo_device.get_data(outfit:id())
-            if not data then
-                data = item_exo_device.init_data(outfit:id())
-            end
-            item_exo_device.charge_exo(exo_battery, outfit, data)
-        end
-
         -- making weapon activated automatically
         local ammos = equiped["ammos"]
         local wpn_slot_1 = equiped["wpn_slot_1"]
         local wpn_slot_2 = equiped["wpn_slot_2"]
-        if wpn_slot_1 ~= nil then
-            -- in case item already equiped and active
-            local aitem = db.actor:active_item()
-            if (aitem and aitem ~= nil and aitem:id() ~= wpn_slot_1:id()) then
-                db.actor:make_item_active(wpn_slot_1)
-            end
-
-            for i, ammo in ipairs(ammos) do
+        if wpn_slot_1 ~= nil and ammos ~= nil then
+            for _, ammo in ipairs(ammos) do
                 change_ammo(wpn_slot_1, ammo, true)
             end
         end
 
-        if wpn_slot_2 ~= nil then
+        if wpn_slot_2 ~= nil and ammos ~= nil then
             for i, ammo in ipairs(ammos) do
                 change_ammo(wpn_slot_2, ammo, true)
             end
         end
+
+        mbo_arena_items_patch.inventory_auto_equip_for_arena_callback(equiped)
 
         -- clear as we do not need it anymore
         RemoveTimeEvent("mbo_arena", "auto_equip")
     end)
 end
 
+-- just updated version to fix issue when actor without armor
 function set_player_icon()
 	if (ui_options.get("gameplay/general/outfit_portrait") == true) then
 		local outfit = db.actor:item_in_slot(7)
@@ -186,9 +180,23 @@ function set_player_icon()
 	end
 end
 
+-- just dummy npc hit to make him attack, resolve issue with arena_enemy stack
+function dummy_hit(npc, who)
+	local h = hit()
+	h.power = 0
+	h.direction = npc:direction()
+	h.draftsman = who
+	h.impulse = 0
+	h.type = hit.fire_wound
+	npc:hit(h)
+end
+
 function force_actor_to_be(comm)
-    db.actor:set_character_community("actor_" .. comm, 0, 0)
-	set_player_icon()
+    CreateTimeEvent("mbo_arena", "change_disguise", 0, function()
+        db.actor:set_character_community("actor_" .. comm, 0, 0)
+        set_player_icon()
+        RemoveTimeEvent("mbo_arena", "change_disguise")
+    end)
 end
 
 function print_dbg(text, ...)
