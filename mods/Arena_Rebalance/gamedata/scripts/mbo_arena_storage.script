@@ -66,6 +66,26 @@ function update_non_grata_info(amount)
     mbo_arena_tbl["non_grata"] = non_grata
 end
 
+-- table with amount and name
+function update_active_bet(bet)
+    if bet ~= nil then
+        print_dbg('bet update: name=%s, amount=%s', bet.name, bet.amount)
+    else
+        print_dbg('bet update: %s', nil)
+    end
+    mbo_arena_tbl["active_bet"] = bet
+end
+
+function get_active_bet()
+    local bet = mbo_arena_tbl["active_bet"]
+    if bet ~= nil then
+        print_dbg('bet fetch: name=%s, amount=%s', bet.name, bet.amount)
+    else
+        print_dbg('bet fetch: %s', nil)
+    end
+    return bet
+end
+
 function save_state(m_data)
     m_data.mbo_arena_tbl = mbo_arena_tbl
     print_dbg("# SAVING: Arena items | number of saved items: %s", size_table(mbo_arena_tbl))

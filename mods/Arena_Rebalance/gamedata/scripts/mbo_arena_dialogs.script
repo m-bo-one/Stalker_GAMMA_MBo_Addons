@@ -3,6 +3,17 @@ Arena module for dialogs
 Author: m-bo-one
 --]]
 
+local condlist_finality_for_dialogs = {
+    'mbo_arena_total_giant',
+    'mbo_arena_total_chimera',
+    'mbo_arena_total_pseudodog',
+    'mbo_arena_total_boar',
+    'mbo_arena_total_cat',
+    'mbo_arena_total_dog',
+    'mbo_arena_total_stalker',
+    'mbo_arena_total_bandit',
+}
+
 -- Checked for non grata, if passed, kick actor and play some sound
 function totaliz_non_grata()
     return mbo_arena_storage.actor_is_non_grata()
@@ -12,6 +23,7 @@ function totaliz_not_non_grata()
     return not mbo_arena_storage.actor_is_non_grata()
 end
 
+-- kicking player to face if he is speaking bad
 function blow_to_face(actor, npc)
     local current_godwill = npc:goodwill(actor)
     mbo_arena_utils.print_dbg("blow to face, current goodwill: %s", current_godwill)
@@ -25,4 +37,97 @@ function blow_to_face(actor, npc)
 
         RemoveTimeEvent("mbo_arena", "blow_to_face")
     end)
+end
+
+-- totaliz unified for lost
+function get_totaliz_party_name(condlist, suffix)
+    for _, cond in ipairs(condlist) do
+        if has_alife_info(cond .. '_' .. suffix) then
+            return str_explode(cond, "_")[4]
+        end
+    end
+    return nil
+end
+
+-- should be invoked during totaliz action
+function get_totaliz_current_bet()
+    return get_totaliz_party_name(condlist_finality_for_dialogs, 'bet')
+end
+
+function get_totaliz_current_win()
+    return get_totaliz_party_name(condlist_finality_for_dialogs, 'done')
+end
+
+function totaliz_bet_exist()
+    return get_totaliz_current_bet() ~= nil
+end
+
+function totaliz_bet_lost()
+    local bet_name = get_totaliz_current_win()
+    if bet_name == nil then
+        print_dbg("Bet name from alife info not found for bet lost, setting as false")
+        return false
+    end
+
+    local active_bet = mbo_arena_storage.get_active_bet()
+    if active_bet == nil then
+        print_dbg("Active bet from storage not found for bet lost, setting as false")
+        return false
+    end
+
+    return bet_name ~= active_bet.name
+end
+
+function totaliz_bet_win()
+    local bet_name = get_totaliz_current_win()
+    if bet_name == nil then
+        print_dbg("Bet name from alife info not found for bet lost, setting as false")
+        return false
+    end
+
+    local active_bet = mbo_arena_storage.get_active_bet()
+    if active_bet == nil then
+        print_dbg("Active bet from storage not found for bet lost, setting as false")
+        return false
+    end
+
+    return bet_name == active_bet.name
+end
+
+function total_clear_info()
+    for _, cond in ipairs(condlist_finality_for_dialogs) do
+        local conditions_to_remove = {"done", "bet"}
+        for _, suffix_to_remove in ipairs(conditions_to_remove) do
+            local info = cond .. '_' .. suffix_to_remove
+            if has_alife_info(info) then
+                db.actor:disable_info_portion(info)
+            end
+        end
+    end
+    -- reset active bet
+    mbo_arena_storage.update_active_bet(nil)
+end
+
+local coef_min_multi = 0.4 -- currently as in Arni description, later - dynamic coeff
+local coef_max_multi = 3 -- currently as in Arni description, later - dynamic coeff
+
+function total_dynamic_reward()
+    local active_bet = mbo_arena_storage.get_active_bet()
+    if active_bet == nil then
+        print_dbg("Active bet from storage not found for reward, ignore")
+        return
+    end
+
+    local cond = 'mbo_arena_totaliz_money_has_gone_' .. tostring(active_bet.amount)
+    if has_alife_info(cond) then
+        local reward = math.random(
+            math.floor(active_bet.amount * (1 + coef_min_multi)),
+            math.floor(active_bet.amount * (1 + coef_max_multi))
+        )
+        dialogs.relocate_money(db.actor, reward,"in")
+        mbo_arena_storage.update_non_grata_info(reward)
+    end
+
+    -- reset active bet
+    mbo_arena_storage.update_active_bet(nil)
 end

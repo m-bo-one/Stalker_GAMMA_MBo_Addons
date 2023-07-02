@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<!-- 0_0 - where
+first 0 is group type
+second 0 is dialog switch
+-->
+
+<string_table>
+	<string id="mbo_arena_totaliz_pre_0">
+		<text>What now?</text>
+	</string>
+	<string id="mbo_arena_totaliz_pre_1">
+		<text>I see you&#x2019;ve earned quite a reputation in the arena, which now means you can make bets and watch fights! On par with all the big loan sharks, consider this as my present to you for being a great fighter. The bets won&#x2019;t be much for you, starting from one grand and going to five, and your prize will depend on the number of participants, winners and losers. To put it briefly, you can earn from forty per cent of your bet up to three times as much as you&#x2019;ve given.</text>
+	</string>
+
+	<string id="mbo_arena_totaliz_non_grata_0">
+		<text>I want to watch a battle.</text>
+	</string>
+	<string id="mbo_arena_totaliz_non_grata_1">
+		<text>I'm afraid you're not welcome here, so you're off the hook.</text>
+	</string>
+	<string id="mbo_arena_totaliz_non_grata_2">
+		<text>Maybe I will put you on the "hook"?</text>
+	</string>
+	<string id="mbo_arena_totaliz_non_grata_3">
+		<text>Why?</text>
+	</string>
+	<string id="mbo_arena_totaliz_non_grata_4">
+		<text>Other arena spectators are not happy with the fact that you often predict matches. So... try to come back later when things have calmed down.</text>
+	</string>
+
+	<string id="mbo_arena_totaliz_begin_want_watch">
+		<text>I want to watch a battle.</text>
+	</string>
+	<string id="mbo_arena_totaliz_begin_choose">
+		<text>Choose what you want to see.</text>
+	</string>
+	<string id="mbo_arena_totaliz_begin_m_to_m">
+		<text>Mutant versus mutant.</text>
+	</string>
+	<string id="mbo_arena_totaliz_begin_exit_1">
+		<text>I&#x2019;ve changed my mind.</text>
+	</string>
+	<string id="mbo_arena_totaliz_begin_exit_2">
+		<text>Not interested.</text>
+	</string>
+	<string id="mbo_arena_totaliz_begin_show_fights">
+		<text>See what I have.</text>
+	</string>
+	<string id="mbo_arena_totaliz_begin_no_money">
+		<text>I don&#x2019;t have that much money.</text>
+	</string>
+
+	<string id="mbo_arena_totaliz_begin_bet_ask">
+		<text>Who are you betting on?</text>
+	</string>
+	<string id="mbo_arena_totaliz_begin_bet_amt">
+		<text>How much are you betting?</text>
+	</string>
+	<string id="mbo_arena_totaliz_begin_have_prize">
+		<text>You got the money?</text>
+	</string>
+	<string id="mbo_arena_totaliz_begin_take_prize">
+		<text>Keep your prize.</text>
+	</string>
+	<string id="mbo_arena_totaliz_begin_bet_lost">
+		<text>Nothing. You&#x2019;ve lost.</text>
+	</string>
+	<string id="mbo_arena_totaliz_begin_g_vs_ch">
+		<text>Giant vs chimera.</text>
+	</string>
+	<string id="mbo_arena_totaliz_begin_bet_giant">
+		<text>The giant.</text>
+	</string>
+	<string id="mbo_arena_totaliz_begin_bet_chimera">
+		<text>The chimera.</text>
+	</string>
+
+	<string id="mbo_arena_totaliz_begin_bet_1000">
+		<text>One thousand.</text>
+	</string>
+	<string id="mbo_arena_totaliz_begin_bet_2500">
+		<text>Two and a half thousand.</text>
+	</string>
+	<string id="mbo_arena_totaliz_begin_bet_5000">
+		<text>Five thousand.</text>
+	</string>
+</string_table>

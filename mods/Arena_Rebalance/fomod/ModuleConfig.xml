@@ -41,7 +41,7 @@
                 <folder source="patches\bas" destination="gamedata" priority="1" alwaysInstall="true" installIfUsable="false"/>
               </files>
 							<typeDescriptor>
-								<type name="Optional"/>
+								<type name="Required"/>
 							</typeDescriptor>
             </plugin>
             <plugin name="Powered Exos Patch">
@@ -52,7 +52,7 @@
                 <folder source="patches\pe" destination="gamedata" priority="2" alwaysInstall="true" installIfUsable="false"/>
               </files>
 							<typeDescriptor>
-								<type name="Optional"/>
+								<type name="Required"/>
 							</typeDescriptor>
             </plugin>
           </plugins>

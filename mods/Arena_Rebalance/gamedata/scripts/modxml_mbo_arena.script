@@ -91,7 +91,6 @@ local function specific_character_dialog_list()
             insert_after = "bar_arena_manager_game",
             dialogs_to_remove = {
                 totaliz_pre = true,
-                totaliz_non_grata = true,
                 totaliz_begin = true,
                 total_reward_dialog_1000 = true,
                 total_reward_dialog_2500 = true,
@@ -101,9 +100,8 @@ local function specific_character_dialog_list()
                 "mbo_arena_totaliz_pre",
                 "mbo_arena_totaliz_non_grata",
                 "mbo_arena_totaliz_begin",
-                "mbo_arena_total_reward_dialog_1000",
-                "mbo_arena_total_reward_dialog_2500",
-                "mbo_arena_total_reward_dialog_5000",
+                "mbo_arena_totaliz_bet_lost",
+                "mbo_arena_totaliz_bet_win",
             },
         },
     }

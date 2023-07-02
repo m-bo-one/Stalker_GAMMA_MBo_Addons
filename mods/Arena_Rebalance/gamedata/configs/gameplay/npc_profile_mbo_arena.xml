@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<xml>
+    <character id="mbo_arena_total_stalker_1">
+        <class>mbo_arena_total_stalker_1</class>
+        <specific_character>mbo_arena_total_stalker_1</specific_character>
+    </character>
+    <character id="mbo_arena_total_bandit_1">
+        <class>mbo_arena_total_bandit_1</class>
+        <specific_character>mbo_arena_total_bandit_1</specific_character>
+    </character>
+</xml>

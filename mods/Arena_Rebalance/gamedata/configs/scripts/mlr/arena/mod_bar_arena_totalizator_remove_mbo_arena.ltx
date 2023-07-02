@@ -1,4 +1,24 @@
-![sr_idle@idle]
-on_info22 = {+total_boar_left_mbo_0_death +remove_is_reload}  sr_idle@reload %=remove_npc(total_boar_left_mbo_0) =remove_npc(total_pseudodog_right_mbo_0)%
-on_info23 = {+total_pseudodog_right_mbo_0_death +remove_is_reload}  sr_idle@reload %=remove_npc(total_boar_left_mbo_0) =remove_npc(total_pseudodog_right_mbo_0)%
+![logic]
+active = sr_idle@idle
 
+% 000 - reserved
+% 001 - stalkers vs stalkers
+% 100 - stalkers vs mutants
+% 200 - mutants vs mutants
+
+![sr_idle@idle]
+on_info1 = {+mbo_arena_total_stalker_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_stalker_1) =remove_npc(mbo_arena_right_total_bandit_1)%
+on_info2 = {+mbo_arena_total_bandit_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_stalker_1) =remove_npc(mbo_arena_right_total_bandit_1)%
+
+on_info200 = {+mbo_arena_total_giant_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_giant_1) =remove_npc(mbo_arena_right_total_chimera_1)%
+on_info201 = {+mbo_arena_total_chimera_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_giant_1) =remove_npc(mbo_arena_right_total_chimera_1)%
+on_info202 = {+mbo_arena_total_pseudodog_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_pseudodog_1) =remove_npc(mbo_arena_right_total_boar_1)%
+on_info203 = {+mbo_arena_total_boar_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_pseudodog_1) =remove_npc(mbo_arena_right_total_boar_1)%
+on_info204 = {+mbo_arena_total_cat_1_death +mbo_arena_total_cat_2_death +mbo_arena_total_cat_3_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_cat_1) =remove_npc(mbo_arena_left_total_cat_2) =remove_npc(mbo_arena_left_total_cat_3) =remove_npc(mbo_arena_right_total_dog_1) =remove_npc(mbo_arena_right_total_dog_2) =remove_npc(mbo_arena_right_total_dog_3)%
+on_info205 = {+mbo_arena_total_dog_1_death +mbo_arena_total_dog_2_death +mbo_arena_total_dog_3_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_cat_1) =remove_npc(mbo_arena_left_total_cat_2) =remove_npc(mbo_arena_left_total_cat_3) =remove_npc(mbo_arena_right_total_dog_1) =remove_npc(mbo_arena_right_total_dog_2) =remove_npc(mbo_arena_right_total_dog_3)%
+
+![sr_idle@reload]
+on_info = sr_idle@over
+
+![sr_idle@over]
+on_info = {+mbo_arena_begin_the_battle} sr_idle@idle

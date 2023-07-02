@@ -1,16 +1,183 @@
-% New logic
-
-[total_boar_left_mbo_0]:boar_strong
-$spawn = "respawn\total_boar_left_mbo_0"
-custom_data = scripts\mlr\arena\total_boar_left_mbo_0.ltx
-story_id = total_boar_left_mbo_0
-
-[total_pseudodog_right_mbo_0]:pseudodog_weak
-$spawn = "respawn\total_pseudodog_right_mbo_0"
-custom_data = scripts\mlr\arena\total_pseudodog_right_mbo_0.ltx
-story_id = total_pseudodog_right_mbo_0
-
 % Old rewrite
 
 ![dialogs]
->files = dialogs_mbo_arena
+>files                     = dialogs_mbo_arena
+
+![profiles]
+>files                     = npc_profile_mbo_arena
+>specific_characters_files = character_desc_mbo_arena
+
+
+% New addition
+
+% -- new mobs for balance
+
+[mbo_arena_pseudodog_attack_params]:pseudodog_attack_params_weak
+stand_attack_0	=	  	0.1,		0.3,		    35,        0.0, 1.0, 1.0,		 -1.0, 1.0, -1.0, 1.0,								  2.5
+run_jamp_1		=		0.2,		0.8,		    90,        0.0, 1.0, 4.0,		 -1.8, 1.8, -1.8, 1.8,								  1.0
+
+[mbo_arena_boar_protections]
+skin_armor				= 0.8
+hit_fraction_monster	= 0.4
+
+[mbo_arena_pseudodog]:pseudodog_weak
+panic_threshold		= 0.05
+MaxHealthValue		     = 0.5
+attack_params		= mbo_arena_pseudodog_attack_params
+
+[mbo_arena_boar_attack_params]:boar_attack_params_strong
+;---------------------------------------------------------------------------------------------------------------------------------------------------------
+;	anim			| time[0..1] | hit_power | impulse | impulse_dir (x,y,z)  |	Field of hit_test  (left,right, top, bottom) |	Test Dist|
+;---------------------------------------------------------------------------------------------------------------------------------------------------------
+stand_attack_0 =	  	0.10,		0.7,	      50,        0.0, 0.5, 0.5,	 -1.0, 1.0, -1.0, 1.0,					  2.3
+stand_attack_1 =	  	0.10,		0.7,	      50,        0.0, 0.5, 0.5,	 -1.0, 1.0, -1.0, 1.0,					  2.3
+stand_attack_2 =	  	0.10,		0.7,	      50,        0.0, 1.0, 2.0,	 -0.8, 0.8, -1.0, 1.0,					  2.5
+stand_attack_run_0 =    0.10,		1.15,	      390,        0.0, 1.0, 2.0,	 -1.0, 1.0, -1.0, 1.0,				  3.2
+stand_attack_run_left_0  =   0.10,		1.1,	      390,        0.0, 1.0, 2.0,	 -1.0, 1.0, -1.0, 1.0,	          3.2
+stand_attack_run_right_0 =   0.10,		1.1,	      390,        0.0, 1.0, 2.0,	 -1.0, 1.0, -1.0, 1.0,	          3.2
+
+[mbo_arena_boar]:boar_01a_hard
+panic_threshold		= 0.05
+MaxHealthValue         = 3
+Health = 6000
+protections_sect = mbo_arena_boar_protections
+
+[mbo_arena_dog_protections]
+skin_armor = 0.4
+hit_fraction_monster = 0.8
+
+[mbo_arena_dog_immunities]:dog_immunities
+wound_immunity = 2	;0.75	;1.0
+
+[mbo_arena_dog_attack_params]
+;---------------------------------------------------------------------------------------------------------------------------------------------------------
+;	anim			| time[0..1] | hit_power | impulse | impulse_dir (x,y,z)  |	Field of hit_test  (left,right, top, bottom) |	Test Dist|
+;---------------------------------------------------------------------------------------------------------------------------------------------------------
+;Bite
+stand_attack_0 =	  	0.1,		0.94,	    50,        0.0, 0.1, 0.0,		 -1.2, 1.2, -1.2, 1.2,				 2.7
+;Both Legs strike with bite
+stand_attack_1 =	  	0.1,		0.94,	    50,        0.0, 0.1, 0.0,		 -1.2, 1.2, -1.2, 1.2,				 3.5
+stand_attack_2 =	  	0.1,		0.94,	    50,        0.0, 0.1, 0.0,		 -1.2, 1.2, -1.2, 1.2,				 3.5
+stand_attack_3 =	  	0.1,		0.94,	    50,        0.0, 0.1, 0.0,		 -1.2, 1.2, -1.2, 1.2,				 3.5
+;Jump attack
+jump_ataka_02  =		0.1,		0.94,	    80,       0.0, 1.0, 4.0,		 -1.8, 1.8, -1.8, 1.8,               2
+
+stand_atack_run_0   =	0.4,		0.94,	    50,       0.0, 1.0, 1.0,		 -1.6, 1.6, -1.6, 1.6,				 2
+
+
+[mbo_arena_dog_base]:dog_normal
+hit_type                = wound
+
+MinAttackDist		    = 1.4
+MaxAttackDist		    = 2.0
+
+as_min_dist				= 0.3
+as_step					= 0.4
+
+panic_threshold = 0.000
+Health = 400
+MaxHealthValue = 3
+attack_params = mbo_arena_dog_attack_params
+protections_sect = mbo_arena_dog_protections
+immunities_sect		= dog_immunities
+
+[mbo_arena_dog_a]:mbo_arena_dog_base
+$spawn				= "monsters\dogs\dog_strong_red"
+visual				= monsters\dog\dog_red_big
+corpse_visual		= monsters\dog\dog_red_big_dead
+icon				= ui_npc_monster_dog
+
+[mbo_arena_dog_b]:mbo_arena_dog_base
+$spawn				= "monsters\dogs\dog_strong_white"
+visual				= monsters\dog\dog_white_big
+corpse_visual		= monsters\dog\dog_white_big_dead
+icon				= ui_npc_monster_dog_white
+
+[mbo_arena_dog_c]:mbo_arena_dog_base
+$spawn				= "monsters\dogs\dog_strong_black"
+visual				= monsters\dog\dog_black
+corpse_visual		= monsters\dog\dog_black_dead
+icon				= ui_npc_monster_dog
+
+% /-- end new mobs for balance
+
+% - on the left
+
+% -- mutants
+
+[mbo_arena_left_total_giant_1]:gigant_weak
+$spawn = "respawn\mbo_arena_left_total_giant_1"
+custom_data = scripts\mbo\arena\left\mutants\total_giant_1.ltx
+story_id = mbo_arena_left_total_giant_1
+
+[mbo_arena_left_total_pseudodog_1]:mbo_arena_pseudodog
+$spawn = "respawn\mbo_arena_left_total_pseudodog_1"
+custom_data = scripts\mbo\arena\left\mutants\total_pseudodog_1.ltx
+story_id = mbo_arena_left_total_pseudodog_1
+
+[mbo_arena_left_total_cat_1]:cat_weak_a
+$spawn = "respawn\mbo_arena_left_total_cat_1"
+custom_data = scripts\mbo\arena\left\mutants\total_cat_1.ltx
+story_id = mbo_arena_left_total_cat_1
+
+[mbo_arena_left_total_cat_2]:cat_weak_b
+$spawn = "respawn\mbo_arena_left_total_cat_2"
+custom_data = scripts\mbo\arena\left\mutants\total_cat_2.ltx
+story_id = mbo_arena_left_total_cat_2
+
+[mbo_arena_left_total_cat_3]:cat_weak_c
+$spawn = "respawn\mbo_arena_left_total_cat_3"
+custom_data = scripts\mbo\arena\left\mutants\total_cat_3.ltx
+story_id = mbo_arena_left_total_cat_3
+
+% -- stalkers
+
+[mbo_arena_left_total_stalker_1]:stalker
+$spawn = "respawn\mbo_arena_left_total_stalker_1"
+custom_data = scripts\mbo\arena\left\stalkers\total_stalker_1.ltx
+story_id = mbo_arena_left_total_stalker_1
+community = stalker
+character_profile = mbo_arena_total_stalker_1
+
+
+% - on the right
+
+% -- mutants
+[mbo_arena_right_total_chimera_1]:chimera_strong4
+$spawn = "respawn\mbo_arena_right_total_chimera_1"
+custom_data = scripts\mbo\arena\right\mutants\total_chimera_1.ltx
+story_id = mbo_arena_right_total_chimera_1
+
+[mbo_arena_right_total_boar_1]:mbo_arena_boar
+$spawn = "respawn\mbo_arena_right_total_boar_1"
+custom_data = scripts\mbo\arena\right\mutants\total_boar_1.ltx
+story_id = mbo_arena_right_total_boar_1
+
+[mbo_arena_right_total_boar_2]:mbo_arena_boar
+$spawn = "respawn\mbo_arena_right_total_boar_2"
+custom_data = scripts\mbo\arena\right\mutants\total_boar_2.ltx
+story_id = mbo_arena_right_total_boar_2
+
+[mbo_arena_right_total_dog_1]:mbo_arena_dog_a
+$spawn = "respawn\mbo_arena_right_total_dog_1"
+custom_data = scripts\mbo\arena\right\mutants\total_dog_1.ltx
+story_id = mbo_arena_right_total_dog_1
+
+[mbo_arena_right_total_dog_2]:mbo_arena_dog_b
+$spawn = "respawn\mbo_arena_right_total_dog_2"
+custom_data = scripts\mbo\arena\right\mutants\total_dog_2.ltx
+story_id = mbo_arena_right_total_dog_2
+
+[mbo_arena_right_total_dog_3]:mbo_arena_dog_c
+$spawn = "respawn\mbo_arena_right_total_dog_3"
+custom_data = scripts\mbo\arena\right\mutants\total_dog_3.ltx
+story_id = mbo_arena_right_total_dog_3
+
+% -- stalkers
+
+[mbo_arena_right_total_bandit_1]:stalker
+$spawn = "respawn\mbo_arena_right_total_bandit_1"
+custom_data = scripts\mbo\arena\right\stalkers\total_bandit_1.ltx
+story_id = mbo_arena_right_total_bandit_1
+community = bandit
+character_profile = mbo_arena_total_bandit_1
