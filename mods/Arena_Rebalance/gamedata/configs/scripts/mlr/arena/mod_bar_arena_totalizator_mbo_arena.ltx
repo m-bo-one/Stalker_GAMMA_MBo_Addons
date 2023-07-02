@@ -7,11 +7,11 @@ active = sr_idle@idle
 % 200 - mutants vs mutants
 
 ![sr_idle@idle]
-on_info1 = {+mbo_arena_total_fight_stalkers_vs_bandits +mbo_arena_totaliz_money_has_gone} sr_idle@teleport %=spawn_object(mbo_arena_left_total_stalker_1:left_mlr_1_walk_1:0) =spawn_object(mbo_arena_right_total_bandit_1:right_mlr_1_walk_1:0)%
+on_info1 = {+mbo_arena_total_fight_stalker_vs_bandit +mbo_arena_totaliz_money_has_gone} sr_idle@teleport %=spawn_object(mbo_arena_left_total_stalker_1:left_mlr_1_walk_1:0) =spawn_object(mbo_arena_right_total_bandit_1:right_mlr_1_walk_1:0)%
 
 on_info200 = {+mbo_arena_total_fight_giant_vs_chimera +mbo_arena_totaliz_money_has_gone} sr_idle@teleport %=spawn_object(mbo_arena_left_total_giant_1:left_mlr_1_walk_1:0) =spawn_object(mbo_arena_right_total_chimera_1:right_mlr_1_walk_1:0)%
 on_info201 = {+mbo_arena_total_fight_pseudodog_vs_boar +mbo_arena_totaliz_money_has_gone} sr_idle@teleport %=spawn_object(mbo_arena_left_total_pseudodog_1:left_mlr_1_walk_1:0) =spawn_object(mbo_arena_right_total_boar_1:right_mlr_1_walk_1:0)%
-on_info202 = {+mbo_arena_total_fight_cats_vs_dogs +mbo_arena_totaliz_money_has_gone} sr_idle@teleport %=spawn_object(mbo_arena_left_total_cat_1:left_mlr_1_walk_1:0) =spawn_object(mbo_arena_left_total_cat_2:left_mlr_1_walk_2:0) =spawn_object(mbo_arena_left_total_cat_3:left_mlr_1_walk_3:0) =spawn_object(mbo_arena_right_total_dog_1:right_mlr_1_walk_1:0) =spawn_object(mbo_arena_right_total_dog_2:right_mlr_1_walk_2:0) =spawn_object(mbo_arena_right_total_dog_3:right_mlr_1_walk_3:0)%
+on_info202 = {+mbo_arena_total_fight_cat_vs_dog +mbo_arena_totaliz_money_has_gone} sr_idle@teleport %=spawn_object(mbo_arena_left_total_cat_1:left_mlr_1_walk_1:0) =spawn_object(mbo_arena_left_total_cat_2:left_mlr_1_walk_2:0) =spawn_object(mbo_arena_left_total_cat_3:left_mlr_1_walk_3:0) =spawn_object(mbo_arena_right_total_dog_1:right_mlr_1_walk_1:0) =spawn_object(mbo_arena_right_total_dog_2:right_mlr_1_walk_2:0) =spawn_object(mbo_arena_right_total_dog_3:right_mlr_1_walk_3:0)%
 
 ![sr_idle@teleport]
 on_info  = {+mbo_arena_total_fight_is_over} sr_idle@timer

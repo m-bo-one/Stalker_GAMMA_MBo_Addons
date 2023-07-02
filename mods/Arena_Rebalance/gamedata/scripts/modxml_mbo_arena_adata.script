@@ -1,0 +1,30 @@
+--[[
+Arena module for dialogs data and base config
+Author: m-bo-one
+--]]
+
+function get_mbo_arena_dialogs_data()
+    return {
+        base_disable_infos = {
+            "mbo_arena_total_fight_is_over",
+            "mbo_arena_remove_is_reload",
+            "mbo_arena_totaliz_money_has_gone",
+            "mbo_arena_totaliz_money_has_gone_5000",
+            "mbo_arena_totaliz_money_has_gone_2500",
+            "mbo_arena_totaliz_money_has_gone_1000",
+        },
+        npcs = {
+            s_to_s = {
+                "stalker:1:bandit:1", -- means create 1 stalker vs 1 bandit fight
+                -- "dolg:5:freedom:5",
+                -- "killer:5:army:5",
+                -- "renegade:5:csky:5",
+                -- "monolith:5:union:5",
+            },
+            s_to_m = {},
+            m_to_m = {
+                "cat:3:dog:3",
+            },
+        },
+    }
+end

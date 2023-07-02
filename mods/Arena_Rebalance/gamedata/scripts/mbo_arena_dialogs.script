@@ -3,16 +3,33 @@ Arena module for dialogs
 Author: m-bo-one
 --]]
 
-local condlist_finality_for_dialogs = {
-    'mbo_arena_total_giant',
-    'mbo_arena_total_chimera',
-    'mbo_arena_total_pseudodog',
-    'mbo_arena_total_boar',
-    'mbo_arena_total_cat',
-    'mbo_arena_total_dog',
-    'mbo_arena_total_stalker',
-    'mbo_arena_total_bandit',
-}
+-- imports
+local print_dbg = mbo_arena_utils.print_dbg
+
+-- for caching only
+local condlist_finality_for_dialogs = {}
+
+function update_condlist_finality_for_dialogs_cache()
+    print_dbg("Updating dialogs cache")
+    local dialogs_data = modxml_mbo_arena_adata.get_mbo_arena_dialogs_data()
+
+    local dialogs_set = {}
+
+    for _, fights in pairs(dialogs_data.npcs) do
+        for _, fight in ipairs(fights) do
+            local fight_list = str_explode(fight, ":")
+
+            local npc_name_1 = fight_list[1]
+            local npc_name_2 = fight_list[3]
+            dialogs_set["mbo_arena_total_" .. npc_name_1] = true
+            dialogs_set["mbo_arena_total_" .. npc_name_2] = true
+        end
+    end
+
+    for key, _ in pairs(dialogs_set) do
+        table.insert(condlist_finality_for_dialogs, key)
+    end
+end
 
 -- Checked for non grata, if passed, kick actor and play some sound
 function totaliz_non_grata()
@@ -26,14 +43,14 @@ end
 -- kicking player to face if he is speaking bad
 function blow_to_face(actor, npc)
     local current_godwill = npc:goodwill(actor)
-    mbo_arena_utils.print_dbg("blow to face, current goodwill: %s", current_godwill)
+    print_dbg("blow to face, current goodwill: %s", current_godwill)
     npc:force_set_goodwill(-5000, actor)
 
     CreateTimeEvent("mbo_arena", "blow_to_face", 1, function()
         -- return previous godwill, so npc could make a hit
         npc:force_set_goodwill(current_godwill, actor)
 
-        mbo_arena_utils.print_dbg("reset back goodwill, he has calmed down: %s", current_godwill)
+        print_dbg("reset back goodwill, he has calmed down: %s", current_godwill)
 
         RemoveTimeEvent("mbo_arena", "blow_to_face")
     end)
@@ -130,4 +147,13 @@ function total_dynamic_reward()
 
     -- reset active bet
     mbo_arena_storage.update_active_bet(nil)
+end
+
+function actor_on_first_update()
+    -- refreshing dialogs list for better performance
+    update_condlist_finality_for_dialogs_cache()
+end
+
+function on_game_start()
+    RegisterScriptCallback("actor_on_first_update", actor_on_first_update)
 end

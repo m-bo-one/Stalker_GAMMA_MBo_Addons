@@ -1,0 +1,241 @@
+--[[
+XML Patching dialogs
+Author: m-bo-one
+--]]
+
+-- imports
+local print_dbg = mbo_arena_utils.print_dbg
+
+-- CORE logic to add all fights from the table
+function generate_mbo_arena_totaliz_begin_xml()
+    local dialogs_data = modxml_mbo_arena_adata.get_mbo_arena_dialogs_data()
+
+    local disable_infos_xml = ""
+    for _, disable_info in ipairs(dialogs_data.base_disable_infos) do
+        disable_infos_xml = string.format("%s<disable_info>%s</disable_info>", disable_infos_xml, disable_info)
+    end
+
+    -- just speed up keys for disabling
+    local cache_for_dis = {}
+    -- categories to xml
+    local category_to_xml = ""
+    -- phrases of categories to select
+    local phrases_of_category_xml = ""
+    -- phrases for bet with specific fight
+    local phrases_of_category_to_bet_xml = ""
+
+    for category, fights in pairs(dialogs_data.npcs) do
+        if #fights == 0 then
+            goto continue
+        end
+        category_to_xml = string.format("%s<next>%s</next>", category_to_xml, category)
+
+        phrases_of_category_xml = string.format([[
+%s
+<phrase id="%s">
+    <text>mbo_arena_totaliz_begin_%s</text>
+    <next>%s_select</next>
+</phrase>
+]], phrases_of_category_xml, category, category, category)
+
+        local figths_nexts_xml = ""
+
+        for _, fight in ipairs(fights) do
+            local fight_list = str_explode(fight, ":")
+
+            local npc_name_1 = fight_list[1]
+            local count_1 = tonumber(fight_list[2])
+            local npc_name_2 = fight_list[3]
+            local count_2 = tonumber(fight_list[4])
+
+            cache_for_dis["mbo_arena_total_" ..npc_name_1.. "_bet"] = true
+            cache_for_dis["mbo_arena_total_" ..npc_name_2.. "_bet"] = true
+            cache_for_dis["mbo_arena_total_" ..npc_name_1.. "_done"] = true
+            cache_for_dis["mbo_arena_total_" ..npc_name_2.. "_done"] = true
+
+            for index = 1, count_1 do
+                cache_for_dis["mbo_arena_total_" ..npc_name_1.. "_" ..tostring(index).. "_death"] = true
+            end
+
+            for index = 1, count_2 do
+                cache_for_dis["mbo_arena_total_" ..npc_name_2.. "_" ..tostring(index).. "_death"] = true
+            end
+
+            local versus_name = string.format("%s_vs_%s", npc_name_1, npc_name_2)
+
+            figths_nexts_xml = string.format(
+                "%s<next>%s</next>",
+                figths_nexts_xml, versus_name
+            )
+
+            phrases_of_category_to_bet_xml = string.format(
+[[
+    %s
+    <phrase id="%s">
+        <text>mbo_arena_totaliz_begin_%s</text>
+        <next>%s_bet</next>
+    </phrase>
+    <phrase id="%s_bet">
+        <text>mbo_arena_totaliz_begin_bet_ask</text>
+        <next>%s_bet_on_1</next>
+        <next>%s_bet_on_2</next>
+        <next>exit_2</next>
+    </phrase>
+    <phrase id="%s_bet_on_1">
+        <text>mbo_arena_totaliz_begin_bet_%s</text>
+        <give_info>mbo_arena_total_fight_%s</give_info>
+        <give_info>mbo_arena_total_%s_bet</give_info>
+        <next>bet_amt</next>
+    </phrase>
+    <phrase id="%s_bet_on_2">
+        <text>mbo_arena_totaliz_begin_bet_%s</text>
+        <give_info>mbo_arena_total_fight_%s</give_info>
+        <give_info>mbo_arena_total_%s_bet</give_info>
+        <next>bet_amt</next>
+    </phrase>
+]],
+    phrases_of_category_to_bet_xml,
+    versus_name, versus_name, versus_name,
+    versus_name, versus_name, versus_name,
+    versus_name, npc_name_1, versus_name, npc_name_1,
+    versus_name, npc_name_2, versus_name, npc_name_2
+)
+
+        end
+
+        phrases_of_category_xml = string.format([[
+%s
+<phrase id="%s_select">
+    <text>mbo_arena_totaliz_begin_show_fights</text>
+    %s
+    <next>exit_2</next>
+</phrase>
+]], phrases_of_category_xml, category, figths_nexts_xml)
+
+        ::continue::
+    end
+
+    for disable_info, _ in pairs(cache_for_dis) do
+        disable_infos_xml = string.format("%s<disable_info>%s</disable_info>", disable_infos_xml, disable_info)
+    end
+
+    local phrase_start_xml = string.format([[
+<phrase id="start">
+    <text>mbo_arena_totaliz_begin_choose</text>
+    %s
+    <next>exit_1</next> <!-- exit -->
+</phrase>
+]],
+    category_to_xml
+)
+
+    local phrase_0_xml = string.format([[
+<phrase id="0">
+    <text>mbo_arena_totaliz_begin_want_watch</text>
+    %s
+    <next>start</next>
+</phrase>
+]], disable_infos_xml)
+
+    return string.format([[
+<dialog id="mbo_arena_totaliz_begin">
+    <precondition>mbo_arena_dialogs.totaliz_not_non_grata</precondition>
+    <dont_has_info>totaliz_begin_over_dialog</dont_has_info> <!-- for spectator voices on arena, not sure that I want to change this -->
+    <has_info>mbo_arena_totaliz_pre</has_info>
+    <phrase_list>
+        %s
+        %s
+        %s
+        %s
+        %s
+        %s
+    </phrase_list>
+</dialog>
+]],
+    phrase_0_xml,
+    phrase_start_xml,
+    phrases_of_category_xml,
+    phrases_of_category_to_bet_xml,
+    generate_mbo_arena_bet_phrases_xml(),
+    generate_mbo_arena_exits_xml()
+)
+end
+
+function generate_mbo_arena_bet_phrases_xml()
+    return [[
+<phrase id="bet_amt">
+    <text>mbo_arena_totaliz_begin_bet_amt</text>
+    <next>bet_1000</next>
+    <next>bet_2500</next>
+    <next>bet_5000</next>
+    <next>exit_no_money</next>
+</phrase>
+<phrase id="bet_1000">
+    <precondition>dialogs_mlr.totaliz_1</precondition>
+    <text>mbo_arena_totaliz_begin_bet_1000</text>
+    <give_info>mbo_arena_begin_the_battle</give_info>
+    <give_info>mbo_arena_totaliz_money_has_gone</give_info>
+    <give_info>mbo_arena_totaliz_money_has_gone_1000</give_info>
+    <action>dialogs_mlr.take_totaliz_1</action>
+    <give_info>totaliz_begin_over_dialog</give_info>
+    <disable_info>total_reward_over_dialog</disable_info>
+    <action>dialogs_mlr.teleport_for_totaliz</action>
+    <action>dialogs.break_dialog</action>
+</phrase>
+<phrase id="bet_2500">
+    <precondition>dialogs_mlr.totaliz_2</precondition>
+    <text>mbo_arena_totaliz_begin_bet_2500</text>
+    <give_info>mbo_arena_begin_the_battle</give_info>
+    <give_info>mbo_arena_totaliz_money_has_gone</give_info>
+    <give_info>mbo_arena_totaliz_money_has_gone_2500</give_info>
+    <action>dialogs_mlr.take_totaliz_2</action>
+    <give_info>totaliz_begin_over_dialog</give_info>
+    <disable_info>total_reward_over_dialog</disable_info>
+    <action>dialogs_mlr.teleport_for_totaliz</action>
+    <action>dialogs.break_dialog</action>
+</phrase>
+<phrase id="bet_5000">
+    <precondition>dialogs_mlr.totaliz_5</precondition>
+    <text>mbo_arena_totaliz_begin_bet_5000</text>
+    <give_info>mbo_arena_begin_the_battle</give_info>
+    <give_info>mbo_arena_totaliz_money_has_gone</give_info>
+    <give_info>mbo_arena_totaliz_money_has_gone_5000</give_info>
+    <action>dialogs_mlr.take_totaliz_5</action>
+    <give_info>totaliz_begin_over_dialog</give_info>
+    <disable_info>total_reward_over_dialog</disable_info>
+    <action>dialogs_mlr.teleport_for_totaliz</action>
+    <action>dialogs.break_dialog</action>
+</phrase>
+]]
+end
+
+function generate_mbo_arena_exits_xml()
+    return [[
+<phrase id="exit_1">
+    <text>mbo_arena_totaliz_begin_exit_1</text>
+</phrase>
+<phrase id="exit_2">
+    <text>mbo_arena_totaliz_begin_exit_2</text>
+</phrase>
+<phrase id="exit_no_money">
+    <text>mbo_arena_totaliz_begin_no_money</text>
+</phrase>
+]]
+end
+
+function on_xml_read()
+    RegisterScriptCallback("on_xml_read", function(xml_file_name, xml_obj)
+        -- XML file i want to change
+        local xml_to_change = [[gameplay\dialogs_mbo_arena.xml]]
+
+        -- Check if its the file i want to change
+        if xml_file_name == xml_to_change then
+            local xml_string = generate_mbo_arena_totaliz_begin_xml()
+            print_dbg("XML | dynamic xml | %s", xml_string)
+            local game_dialogs = xml_obj:getRoot()
+            if is_not_empty(game_dialogs) then
+                xml_obj:insertFromXMLString(xml_string, game_dialogs, #game_dialogs.kids)
+            end
+        end
+    end)
+end
