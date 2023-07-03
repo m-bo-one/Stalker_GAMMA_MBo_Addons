@@ -24,8 +24,8 @@ function generate_mbo_arena_totaliz_begin_xml()
     -- phrases for bet with specific fight
     local phrases_of_category_to_bet_xml = ""
 
-    for category, fights in pairs(dialogs_data.npcs) do
-        if #fights == 0 then
+    for category, fights in pairs(dialogs_data.fights) do
+        if dialogs_data:fights_len(category) == 0 then
             goto continue
         end
         category_to_xml = string.format("%s<next>%s</next>", category_to_xml, category)
@@ -34,20 +34,25 @@ function generate_mbo_arena_totaliz_begin_xml()
 %s
 <phrase id="%s">
     <text>mbo_arena_totaliz_begin_%s</text>
+    <give_info>mbo_arena_total_fight_%s</give_info>
     <next>%s_select</next>
 </phrase>
-]], phrases_of_category_xml, category, category, category)
+]], phrases_of_category_xml, category, category, category, category)
 
         local figths_nexts_xml = ""
 
-        for _, fight in ipairs(fights) do
+        cache_for_dis["mbo_arena_total_fight_" ..category] = true
+
+        for fight, fight_data in pairs(fights) do
             local fight_list = str_explode(fight, ":")
 
-            local npc_name_1 = fight_list[1]
-            local count_1 = tonumber(fight_list[2])
-            local npc_name_2 = fight_list[3]
-            local count_2 = tonumber(fight_list[4])
+            local count_1 = fight_data.count_1
+            local count_2 = fight_data.count_2
 
+            local npc_name_1 = fight_list[1]
+            local npc_name_2 = fight_list[2]
+
+            cache_for_dis["mbo_arena_total_fight_" ..npc_name_1.. "_vs_" ..npc_name_2] = true
             cache_for_dis["mbo_arena_total_" ..npc_name_1.. "_bet"] = true
             cache_for_dis["mbo_arena_total_" ..npc_name_2.. "_bet"] = true
             cache_for_dis["mbo_arena_total_" ..npc_name_1.. "_done"] = true

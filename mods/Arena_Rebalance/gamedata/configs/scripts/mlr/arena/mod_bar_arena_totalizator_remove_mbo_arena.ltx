@@ -7,8 +7,15 @@ active = sr_idle@idle
 % 200 - mutants vs mutants
 
 ![sr_idle@idle]
-on_info1 = {+mbo_arena_total_stalker_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_stalker_1) =remove_npc(mbo_arena_right_total_bandit_1)%
-on_info2 = {+mbo_arena_total_bandit_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_stalker_1) =remove_npc(mbo_arena_right_total_bandit_1)%
+on_info1 =   {+mbo_arena_total_stalker_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_stalker_1) =remove_npc(mbo_arena_right_total_bandit_1) =remove_npc(mbo_arena_right_total_monolith_1)%
+on_info2 =   {+mbo_arena_total_bandit_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_stalker_1) =remove_npc(mbo_arena_right_total_bandit_1)%
+on_info3 =   {+mbo_arena_total_dolg_1_death +mbo_arena_total_dolg_2_death +mbo_arena_total_dolg_3_death +mbo_arena_total_dolg_4_death +mbo_arena_total_dolg_5_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_dolg_1) =remove_npc(mbo_arena_left_total_dolg_2) =remove_npc(mbo_arena_left_total_dolg_3) =remove_npc(mbo_arena_left_total_dolg_4) =remove_npc(mbo_arena_left_total_dolg_5) =remove_npc(mbo_arena_right_total_freedom_1) =remove_npc(mbo_arena_right_total_freedom_2) =remove_npc(mbo_arena_right_total_freedom_3) =remove_npc(mbo_arena_right_total_freedom_4) =remove_npc(mbo_arena_right_total_freedom_5)%
+on_info4 =   {+mbo_arena_total_freedom_1_death +mbo_arena_total_freedom_2_death +mbo_arena_total_freedom_3_death +mbo_arena_total_freedom_4_death +mbo_arena_total_freedom_5_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_dolg_1) =remove_npc(mbo_arena_left_total_dolg_2) =remove_npc(mbo_arena_left_total_dolg_3) =remove_npc(mbo_arena_left_total_dolg_4) =remove_npc(mbo_arena_left_total_dolg_5) =remove_npc(mbo_arena_right_total_freedom_1) =remove_npc(mbo_arena_right_total_freedom_2) =remove_npc(mbo_arena_right_total_freedom_3) =remove_npc(mbo_arena_right_total_freedom_4) =remove_npc(mbo_arena_right_total_freedom_5)%
+on_info5 =   {+mbo_arena_total_killer_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_killer_1) =remove_npc(mbo_arena_right_total_army_1)%
+on_info6 =   {+mbo_arena_total_army_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_killer_1) =remove_npc(mbo_arena_right_total_army_1)%
+on_info7 =   {+mbo_arena_total_renegade_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_renegade_1) =remove_npc(mbo_arena_right_total_csky_1)%
+on_info8 =   {+mbo_arena_total_csky_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_renegade_1) =remove_npc(mbo_arena_right_total_csky_1)%
+on_info9 =   {+mbo_arena_total_monolith_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_stalker_1) =remove_npc(mbo_arena_right_total_monolith_1)%
 
 on_info200 = {+mbo_arena_total_giant_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_giant_1) =remove_npc(mbo_arena_right_total_chimera_1)%
 on_info201 = {+mbo_arena_total_chimera_1_death +mbo_arena_remove_is_reload}  sr_idle@reload %=remove_npc(mbo_arena_left_total_giant_1) =remove_npc(mbo_arena_right_total_chimera_1)%

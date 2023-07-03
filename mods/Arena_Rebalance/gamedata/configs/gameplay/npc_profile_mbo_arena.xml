@@ -8,4 +8,66 @@
         <class>mbo_arena_total_bandit_1</class>
         <specific_character>mbo_arena_total_bandit_1</specific_character>
     </character>
+    <character id="mbo_arena_total_killer_1">
+        <class>mbo_arena_total_killer_1</class>
+        <specific_character>mbo_arena_total_killer_1</specific_character>
+    </character>
+    <character id="mbo_arena_total_renegade_1">
+        <class>mbo_arena_total_renegade_1</class>
+        <specific_character>mbo_arena_total_renegade_1</specific_character>
+    </character>
+    <character id="mbo_arena_total_dolg_1">
+        <class>mbo_arena_total_dolg_1</class>
+        <specific_character>mbo_arena_total_dolg_1</specific_character>
+    </character>
+    <character id="mbo_arena_total_dolg_2">
+        <class>mbo_arena_total_dolg_2</class>
+        <specific_character>mbo_arena_total_dolg_2</specific_character>
+    </character>
+    <character id="mbo_arena_total_dolg_3">
+        <class>mbo_arena_total_dolg_3</class>
+        <specific_character>mbo_arena_total_dolg_3</specific_character>
+    </character>
+    <character id="mbo_arena_total_dolg_4">
+        <class>mbo_arena_total_dolg_4</class>
+        <specific_character>mbo_arena_total_dolg_4</specific_character>
+    </character>
+    <character id="mbo_arena_total_dolg_5">
+        <class>mbo_arena_total_dolg_5</class>
+        <specific_character>mbo_arena_total_dolg_5</specific_character>
+    </character>
+
+    <character id="mbo_arena_total_freedom_1">
+        <class>mbo_arena_total_freedom_1</class>
+        <specific_character>mbo_arena_total_freedom_1</specific_character>
+    </character>
+    <character id="mbo_arena_total_freedom_2">
+        <class>mbo_arena_total_freedom_2</class>
+        <specific_character>mbo_arena_total_freedom_2</specific_character>
+    </character>
+    <character id="mbo_arena_total_freedom_3">
+        <class>mbo_arena_total_freedom_3</class>
+        <specific_character>mbo_arena_total_freedom_3</specific_character>
+    </character>
+    <character id="mbo_arena_total_freedom_4">
+        <class>mbo_arena_total_freedom_4</class>
+        <specific_character>mbo_arena_total_freedom_4</specific_character>
+    </character>
+    <character id="mbo_arena_total_freedom_5">
+        <class>mbo_arena_total_freedom_5</class>
+        <specific_character>mbo_arena_total_freedom_5</specific_character>
+    </character>
+    <character id="mbo_arena_total_army_1">
+        <class>mbo_arena_total_army_1</class>
+        <specific_character>mbo_arena_total_army_1</specific_character>
+    </character>
+    <character id="mbo_arena_total_csky_1">
+        <class>mbo_arena_total_csky_1</class>
+        <specific_character>mbo_arena_total_csky_1</specific_character>
+    </character>
+
+    <character id="mbo_arena_total_monolith_1">
+        <class>mbo_arena_total_monolith_1</class>
+        <specific_character>mbo_arena_total_monolith_1</specific_character>
+    </character>
 </xml>

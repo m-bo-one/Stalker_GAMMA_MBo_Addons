@@ -4,7 +4,7 @@ Author: m-bo-one
 --]]
 
 function get_mbo_arena_dialogs_data()
-    return {
+    local dialogs_data = {
         base_disable_infos = {
             "mbo_arena_total_fight_is_over",
             "mbo_arena_remove_is_reload",
@@ -13,18 +13,110 @@ function get_mbo_arena_dialogs_data()
             "mbo_arena_totaliz_money_has_gone_2500",
             "mbo_arena_totaliz_money_has_gone_1000",
         },
-        npcs = {
+        fights = {
             s_to_s = {
-                "stalker:1:bandit:1", -- means create 1 stalker vs 1 bandit fight
-                -- "dolg:5:freedom:5",
-                -- "killer:5:army:5",
-                -- "renegade:5:csky:5",
-                -- "monolith:5:union:5",
+                -- means 1 stalkers vs 1 bandits
+                ["stalker:bandit"] = {
+                    count_1 = 1,
+                    count_2 = 1,
+                },
+                ["dolg:freedom"] = {
+                    count_1 = 5,
+                    count_2 = 5,
+                },
+                ["killer:army"] = {
+                    count_1 = 1,
+                    count_2 = 1,
+                },
+                ["renegade:csky"] = {
+                    count_1 = 1,
+                    count_2 = 1,
+                },
+                ["union:monolith"] = {
+                    count_1 = 1,
+                    count_2 = 1,
+                },
             },
-            s_to_m = {},
+            s_to_m = {
+                ["cat:army"] = {
+                    count_1 = 2,
+                    count_2 = 1,
+                },
+                ["stalker:dog"] = {
+                    count_1 = 1,
+                    count_2 = 2,
+                },
+                ["dolg:chimera"] = {
+                    count_1 = 3,
+                    count_2 = 1,
+                },
+            },
             m_to_m = {
-                "cat:3:dog:3",
+                ["cat:dog"] = {
+                    count_1 = 3,
+                    count_2 = 3,
+                },
             },
         },
+        -- fights_group = {
+        --     ["union"] = {
+        --         "stalker",
+        --         "dolg",
+        --     },
+        -- },
+        -- this is for force set
+        enemies = {
+            ["stalker"] = {
+                "bandit",
+                "monolith",
+            },
+            ["dolg"] = {
+                "freedom",
+                "monolith",
+            },
+            ["freedom"] = {
+                "dolg",
+                "monolith",
+            },
+            ["killer"] = {
+                "army",
+                "monolith",
+            },
+            ["army"] = {
+                "killer",
+                "monolith",
+            },
+            ["bandit"] = {
+                "stalker",
+                "monolith",
+            },
+            ["renegade"] = {
+                "csky",
+                "monolith",
+            },
+            ["csky"] = {
+                "renegade",
+                "monolith",
+            },
+            ["monolith"] = {
+                "stalker",
+                "dolg",
+                "freedom",
+                "killer",
+                "army",
+                "bandit",
+                "renegade",
+                "csky",
+            },
+        }
     }
+
+    dialogs_data.fights_len = function (self, category)
+        if self.fights[category] == nil then return 0 end
+        local count = 0
+        for _ in pairs(self.fights[category]) do count = count + 1 end
+        return count
+    end
+
+    return dialogs_data
 end

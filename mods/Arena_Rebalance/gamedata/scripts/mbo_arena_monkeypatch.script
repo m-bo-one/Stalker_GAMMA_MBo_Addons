@@ -6,13 +6,13 @@ Author: m-bo-one
 local print_dbg = mbo_arena_utils.print_dbg
 
 local function make_actor_unkillable()
-    -- xrs_debug_tools.debug_god = true
-    -- xrs_debug_tools.debug_invis = true
+    xrs_debug_tools.debug_god = true
+    xrs_debug_tools.debug_invis = true
 end
 
 local function make_actor_killable()
-    -- xrs_debug_tools.debug_god = false
-    -- xrs_debug_tools.debug_invis = false
+    xrs_debug_tools.debug_god = false
+    xrs_debug_tools.debug_invis = false
 end
 
 
@@ -147,18 +147,22 @@ end
 -- looks like this function only used for .ltx setup bar and mlr/arena only
 -- TODO: How to make it work with mutants?
 function xr_effects.make_enemy(actor, npc, p)
+    print_dbg("Showing P %s vs %s", p[1], p[2])
     local npc1 = get_story_object(p[1])
     if not (npc1) then
+        print_dbg("Npc1 not found")
         return
     end
     local npc2 = get_story_object(p[2])
     if not (npc2) then
+        print_dbg("Npc2 not found")
         return
     end
 
-    -- monsters do not have relations
+    -- monsters do not have relations on public api
     if not IsMonster(npc1) then
         npc1:set_relation(game_object.enemy, npc2)
+        print_dbg("Making enemy %s vs %s", p[1], p[2])
         -- mbo_arena_utils.dummy_hit(npc1, npc2)
     end
 end
@@ -208,4 +212,79 @@ function xr_effects.spawn_object(actor, obj, p)
     print_dbg("spawn obj: %s", obj:id())
     print_dbg("spawn p[1]: %s", p[1])
     print_dbg("spawn p[2]: %s", p[2])
+end
+
+function xr_effects.make_enemy_from_mbo_config(actor, obj, p)
+    if not has_alife_info("mbo_arena_total_fight_s_to_s") then
+        print_dbg("Not stalker to stalker match")
+        return
+    end
+
+    if p[1] == nil then
+        print_dbg("Category not set for make enemy")
+        return
+    end
+    if p[2] == nil then
+        print_dbg("Npc not set for make enemy")
+        return
+    end
+    local dialogs_data = modxml_mbo_arena_adata.get_mbo_arena_dialogs_data()
+
+    local id_destr = str_explode(p[2], '_')
+    local npc_name = id_destr[2]
+    local npc_idx = id_destr[3]
+
+    if npc_name == nil or npc_name == "" then
+        print_dbg("Npc name not destructed, error in config")
+        return
+    end
+
+    local enemy_npc_names = dialogs_data.enemies[npc_name]
+    if enemy_npc_names == nil or #enemy_npc_names == 0 then
+        print_dbg("Npc %s does not have an enemies", npc_name)
+        return
+    end
+
+    local fights_for_category = dialogs_data.fights[p[1]]
+    if fights_for_category == nil then
+        print_dbg("Fights for category '%s' not found", p[1])
+        return
+    end
+
+    print_dbg("obj clsid enemy config: %s", obj:clsid())
+
+    -- hack
+    local is_union = false
+    if has_alife_info('mbo_arena_total_fight_union_vs_monolith') then
+        is_union = true
+    end
+
+    for _, enemy_npc_name in ipairs(enemy_npc_names) do
+        local direction_1 = "left"
+        local direction_2 = "right"
+        local fight_list = fights_for_category[(is_union and "union" or npc_name) .. ":" .. enemy_npc_name]
+        local count = 0
+        if fight_list == nil then
+            -- trying find oposite
+            fight_list = fights_for_category[(is_union and "union" or enemy_npc_name) .. ":" .. npc_name]
+            if fight_list == nil then
+                print_dbg("No fight for '%s:%s' found", npc_name, enemy_npc_name)
+                goto continue
+            else
+                direction_1 = "right"
+                direction_2 = "left"
+                count = fight_list.count_1
+            end
+        else
+            count = fight_list.count_2
+        end
+
+        local pp = {}
+        pp[1] = string.format("mbo_arena_%s_total_%s_%s", direction_1, npc_name, npc_idx)
+        for i = 1, count do
+            pp[2] = string.format("mbo_arena_%s_total_%s_%s", direction_2, enemy_npc_name, i)
+            xr_effects.make_enemy(actor, obj, pp)
+        end
+        ::continue::
+    end
 end

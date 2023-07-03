@@ -3,10 +3,10 @@ active = walker
 on_death = death
 
 [walker]
-path_walk = right_mlr_1_walk_1
+path_walk = right_mlr_1_walk_3
 path_look = mlr_all_point_look
 combat_ignore_cond = true
-on_info = walker@1 %=make_enemy_from_mbo_config(s_to_s:total_bandit_1)%
+on_info = walker@1 %=make_enemy_from_mbo_config(s_to_s:total_freedom_5)%
 gather_items_enabled = false
 help_wounded_enabled = false
 corpse_detection_enabled = false
@@ -34,4 +34,4 @@ hp_fight        = 0|false
 hp_cover        = 0|false
 
 [death]
-on_info = %+mbo_arena_total_bandit_1_death%
+on_info = %+mbo_arena_total_freedom_5_death +total_fight_is_over%

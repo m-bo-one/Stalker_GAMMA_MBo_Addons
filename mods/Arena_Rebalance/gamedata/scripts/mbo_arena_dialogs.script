@@ -8,22 +8,40 @@ local print_dbg = mbo_arena_utils.print_dbg
 
 -- for caching only
 local condlist_finality_for_dialogs = {}
+local fights_for_dialogs = {}
 
-function update_condlist_finality_for_dialogs_cache()
+function update_dialogs_cache()
     print_dbg("Updating dialogs cache")
     local dialogs_data = modxml_mbo_arena_adata.get_mbo_arena_dialogs_data()
 
     local dialogs_set = {}
+    local fights_set = {}
 
-    for _, fights in pairs(dialogs_data.npcs) do
-        for _, fight in ipairs(fights) do
+    for category, fights in pairs(dialogs_data.fights) do
+        if dialogs_data:fights_len(category) == 0 then
+            goto continue
+        end
+        for fight, fight_data in pairs(fights) do
             local fight_list = str_explode(fight, ":")
 
+            local count_1 = fight_data.count_1
+            local count_2 = fight_data.count_2
+
             local npc_name_1 = fight_list[1]
-            local npc_name_2 = fight_list[3]
+            local npc_name_2 = fight_list[2]
             dialogs_set["mbo_arena_total_" .. npc_name_1] = true
             dialogs_set["mbo_arena_total_" .. npc_name_2] = true
+
+            fights_for_dialogs[
+                "mbo_arena_total_fight_" ..npc_name_1.. "_" ..count_1.. "_vs_" ..npc_name_2 .. "_" .. count_2
+            ] = true
         end
+
+        ::continue::
+    end
+
+    for key, _ in pairs(fights_set) do
+        table.insert(fights_for_dialogs, key)
     end
 
     for key, _ in pairs(dialogs_set) do
@@ -151,7 +169,7 @@ end
 
 function actor_on_first_update()
     -- refreshing dialogs list for better performance
-    update_condlist_finality_for_dialogs_cache()
+    update_dialogs_cache()
 end
 
 function on_game_start()
