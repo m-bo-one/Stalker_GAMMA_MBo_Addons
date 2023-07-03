@@ -1,0 +1,313 @@
+--[[
+Custom xr effects patching
+Author: m-bo-one
+--]]
+
+-- imports
+local print_dbg = mbo_arena_utils.print_dbg
+
+function xr_effects.mbo_arena_spawn_objects(actor, obj, p)
+    local faction_1 = p[1] or ""
+    local faction_2 = p[2] or ""
+
+    print_dbg("faction_1: %s", faction_1)
+    print_dbg("faction_2: %s", faction_2)
+
+    for _, figths in pairs(modxml_mbo_arena_adata.get_mbo_arena_dialogs_data().fights) do
+        local fight_data = figths[faction_1 .. ":" .. faction_2]
+        if fight_data == nil then
+            goto continue
+        end
+
+        -- =spawn_object(mbo_arena_left_total_cat_1:left_mlr_1_walk_1:0)
+
+        local walk_indexes_1 = mbo_arena_utils.generate_walk_index(fight_data.count_1)
+        for i = 1, fight_data.count_1 do
+            local pp = {}
+            pp[1] = string.format("mbo_arena_left_total_%s_%s", faction_1, i)
+            pp[2] = string.format("left_mlr_1_walk_%s", walk_indexes_1[i])
+            pp[3] = 0
+            xr_effects.spawn_object(actor, obj, pp)
+        end
+
+        local walk_indexes_2 = mbo_arena_utils.generate_walk_index(fight_data.count_2)
+        for j = 1, fight_data.count_2 do
+            local pp = {}
+            pp[1] = string.format("mbo_arena_right_total_%s_%s", faction_2, j)
+            pp[2] = string.format("right_mlr_1_walk_%s", walk_indexes_2[j])
+            pp[3] = 0
+            xr_effects.spawn_object(actor, obj, pp)
+        end
+
+        ::continue::
+    end
+end
+
+function xr_effects.mbo_arena_remove_npcs(actor, obj, p)
+    if p[1] == nil then
+        print_dbg("Nothing to remove")
+        return
+    end
+
+    for _, figths in pairs(modxml_mbo_arena_adata.get_mbo_arena_dialogs_data().fights) do
+        for fight, fight_data in pairs(figths) do
+            local faction_explode = str_explode(fight, ":")
+
+            if faction_explode[1] ~= p[1] and faction_explode[2] ~= p[1] then
+                goto continue
+            end
+
+            for i = 1, fight_data.count_1 do
+                local pp = {}
+                pp[1] = string.format("mbo_arena_left_total_%s_%s", faction_explode[1], i)
+                xr_effects.remove_npc(actor, obj, pp)
+            end
+
+            for j = 1, fight_data.count_2 do
+                local pp = {}
+                pp[1] = string.format("mbo_arena_right_total_%s_%s", faction_explode[1], j)
+                xr_effects.remove_npc(actor, obj, pp)
+            end
+
+            ::continue::
+        end
+    end
+end
+
+function xr_effects.make_actor_friend(actor, npc, p)
+    npc:set_relation(game_object.friend, actor)
+end
+
+-- mbo_arena_force_friends(union:left:5:5)
+function xr_effects.mbo_arena_force_friends(actor, npc, p)
+    local faction = p[1]
+    local direction = p[2]
+    local current_idx = tonumber(p[3])
+    local total_friends = tonumber(p[4])
+
+    local current_npc_id = string.format("mbo_arena_%s_total_%s_%s", direction, faction, current_idx)
+
+    local current = get_story_object(current_npc_id)
+    if not (current) then
+        print_dbg("Current npc for friend ask not found")
+        return
+    end
+
+    for idx = 1, total_friends do
+        if idx == current_idx then
+            goto continue
+        end
+        local who_is_friend_npc_id = string.format("mbo_arena_%s_total_%s_%s", direction, faction, idx)
+        local who_is_friend_npc = get_story_object(who_is_friend_npc_id)
+        if not (who_is_friend_npc) then
+            print_dbg("Who is friend npc not found")
+            goto continue
+        end
+
+        print_dbg("Friend %s has set for %s", who_is_friend_npc:id(), current:id())
+        current:set_relation(game_object.friend, who_is_friend_npc)
+        ::continue::
+    end
+end
+
+local xr_spawn_object = xr_effects.spawn_object
+
+function xr_effects.spawn_object(actor, obj, p)
+    xr_spawn_object(actor, obj, p)
+    print_dbg("spawn actor: %s", actor:id())
+    print_dbg("spawn obj: %s", obj:id())
+    print_dbg("spawn p[1]: %s", p[1])
+    print_dbg("spawn p[2]: %s", p[2])
+end
+
+function xr_effects.make_enemy_from_mbo_config(actor, obj, p)
+    if not has_alife_info("mbo_arena_total_fight_s_to_s") then
+        print_dbg("Not stalker to stalker match")
+        return
+    end
+
+    if p[1] == nil then
+        print_dbg("Category not set for make enemy")
+        return
+    end
+    if p[2] == nil then
+        print_dbg("Npc not set for make enemy")
+        return
+    end
+    local dialogs_data = modxml_mbo_arena_adata.get_mbo_arena_dialogs_data()
+
+    local id_destr = str_explode(p[2], '_')
+    local npc_name = id_destr[2]
+    local npc_idx = id_destr[3]
+
+    if npc_name == nil or npc_name == "" then
+        print_dbg("Npc name not destructed, error in config")
+        return
+    end
+
+    local enemy_npc_names = dialogs_data.enemies[npc_name]
+    if enemy_npc_names == nil or #enemy_npc_names == 0 then
+        print_dbg("Npc %s does not have an enemies", npc_name)
+        return
+    end
+
+    local fights_for_category = dialogs_data.fights[p[1]]
+    if fights_for_category == nil then
+        print_dbg("Fights for category '%s' not found", p[1])
+        return
+    end
+
+    for _, enemy_npc_name in ipairs(enemy_npc_names) do
+        local direction_1 = "left"
+        local direction_2 = "right"
+        local fight_list = fights_for_category[npc_name .. ":" .. enemy_npc_name]
+        local count = 0
+        if fight_list == nil then
+            -- trying find oposite
+            fight_list = fights_for_category[enemy_npc_name .. ":" .. npc_name]
+            if fight_list == nil then
+                goto continue
+            else
+                direction_1 = "right"
+                direction_2 = "left"
+                count = fight_list.count_1
+            end
+        else
+            count = fight_list.count_2
+        end
+
+        local pp = {}
+        pp[1] = string.format("mbo_arena_%s_total_%s_%s", direction_1, npc_name, npc_idx)
+        for i = 1, count do
+            pp[2] = string.format("mbo_arena_%s_total_%s_%s", direction_2, enemy_npc_name, i)
+            xr_effects.make_enemy(actor, obj, pp)
+        end
+        ::continue::
+    end
+end
+
+-- Overriding arena totalizator on exit to make it pluggable to keep on/off items in the arena inventory box
+function xr_effects.teleport_for_totaliz_out(first_speaker, second_speaker)
+    local box = get_story_object("bar_arena_inventory_box_2")
+    if (box) then
+        local function transfer_object_item(item)
+            db.actor:transfer_item(item, box)
+        end
+        db.actor:inventory_for_each(transfer_object_item)
+    end
+
+    xr_zones.purge_arena_items("bar_arena")
+
+    level.add_pp_effector("fade_in.ppe", 200, false)
+    db.actor:set_actor_position(vector():set(150.249435424805, 0.429966986179352, 72.1354370117188), 40238, 1684)
+
+    mbo_arena_utils.make_actor_killable()
+end
+
+-- !!!!!!!!
+-- CAMPAIGN
+
+-- Overriding arena baseline on enter
+function xr_effects.bar_arena_teleport(actor, npc)
+    actor_effects.disable_effects_timer(100)
+
+    -- hide_hud_inventory()
+    hide_hud_all()
+
+    local box = get_story_object("bar_arena_inventory_box")
+    if (box) then
+        local function transfer_object_item(item)
+            db.actor:transfer_item(item, box)
+        end
+        db.actor:inventory_for_each(transfer_object_item)
+    end
+
+    local spawn_items = {}
+
+    for info, items in pairs(mbo_arena_items_patch.get_arena_items()) do
+        if has_alife_info(info) then
+            for _, item_str in ipairs(items) do
+                table.insert(spawn_items, item_str)
+            end
+        end
+    end
+
+    for _, v in pairs(spawn_items) do
+        local se = alife_create(v, db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), AC_ID)
+        if se ~= nil then
+            se_save_var(se.id, se:name(), "unpatched", true)
+        else
+            print_dbg("failed to create alife for: %s", v)
+        end
+    end
+
+    mbo_arena_utils.inventory_auto_equip_for_arena()
+
+    -- always a loner in the arena
+    mbo_arena_utils.force_actor_to_be("stalker")
+end
+
+-- Overriding arena baseline on exit
+function xr_effects.bar_arena_teleport_2(actor, npc)
+    actor_effects.disable_effects_timer(100)
+    -- hide_hud_inventory()
+    hide_hud_all()
+
+    -- remove items from actor given to him by arena
+    local box = get_story_object("bar_arena_inventory_box_2")
+    if (box) then
+        local function transfer_object_item(item)
+            db.actor:transfer_item(item, box)
+        end
+        db.actor:inventory_for_each(transfer_object_item)
+    end
+
+    -- purge all marked items
+    xr_zones.purge_arena_items("bar_arena")
+
+    level.add_pp_effector("blink.ppe", 234, false)
+
+    db.actor:set_actor_position(patrol("t_walk_2"):point(0))
+    local dir = patrol("t_look_2"):point(0):sub(patrol("t_walk_2"):point(0))
+    db.actor:set_actor_direction(-dir:getH())
+
+    -- return back disguise
+    mbo_arena_utils.force_actor_to_be(gameplay_disguise.get_default_comm())
+
+    -- TODO: As this function local, somehow I want to heal actor
+    -- healing with superior kit after battle
+    -- zzz_player_injuries.actor_on_item_use(nil, "survival_kit")
+end
+
+function xr_effects.make_actor_enemy(actor, npc, p)
+    local npc1 = get_story_object(p[1])
+    if not (npc1) then
+        return
+    end
+
+    npc1:set_relation(game_object.enemy, db.actor)
+    mbo_arena_utils.dummy_hit(npc1, db.actor)
+end
+
+-- looks like this function only used for .ltx setup bar and mlr/arena only
+-- TODO: How to make it work with mutants?
+function xr_effects.make_enemy(actor, npc, p)
+    print_dbg("Showing P %s vs %s", p[1], p[2])
+    local npc1 = get_story_object(p[1])
+    if not (npc1) then
+        print_dbg("Npc1 not found")
+        return
+    end
+    local npc2 = get_story_object(p[2])
+    if not (npc2) then
+        print_dbg("Npc2 not found")
+        return
+    end
+
+    -- monsters do not have relations on public api
+    if not IsMonster(npc1) then
+        npc1:set_relation(game_object.enemy, npc2)
+        print_dbg("Making enemy %s vs %s", p[1], p[2])
+        -- mbo_arena_utils.dummy_hit(npc1, npc2)
+    end
+end

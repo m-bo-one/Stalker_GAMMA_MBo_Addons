@@ -15,9 +15,8 @@
         <reputation>234</reputation>
         <visual>actors\stalker_neutral\stalker_neutral2c</visual>
         <supplies>
-            [spawn] \n
-            wpn_bm16=1  \n
-            ammo_12x70_buck=1
+#include "gameplay\loadouts\stalker_base.ltx"
+#include "gameplay\loadouts\stalker_tier_3.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -35,9 +34,8 @@
         <money min="500" max="1750" infinitive="0"/>
         <visual>actors\stalker_bandit\stalker_bandit2a_old</visual>
         <supplies>
-            [spawn] \n
-            wpn_bm16=1  \n
-            ammo_12x70_buck=1
+#include "gameplay\loadouts\bandit_base.ltx"
+#include "gameplay\loadouts\bandit_tier_3.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -56,9 +54,8 @@
         <money min="1500" max="3500" infinitive="0"/>
         <visual>actors\stalker_dolg\stalker_dolg2a</visual>
         <supplies>
-            [spawn] \n
-            wpn_abakan=1 \n
-            ammo_5.45x39_fmj=1
+#include "gameplay\loadouts\dolg_base.ltx"
+#include "gameplay\loadouts\dolg_tier_3.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -77,9 +74,8 @@
         <money min="1500" max="3500" infinitive="0"/>
         <visual>actors\stalker_dolg\stalker_dolg_2_mas2</visual>
         <supplies>
-            [spawn] \n
-            wpn_ak74=1 \n
-            ammo_5.45x39_fmj=1
+#include "gameplay\loadouts\dolg_base.ltx"
+#include "gameplay\loadouts\dolg_tier_3.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -98,9 +94,8 @@
         <money min="1500" max="3500" infinitive="0"/>
         <visual>actors\stalker_dolg\stalker_dolg2a_mask</visual>
         <supplies>
-            [spawn] \n
-            wpn_toz34=1 \n
-            ammo_12x70_buck=1
+#include "gameplay\loadouts\dolg_base.ltx"
+#include "gameplay\loadouts\dolg_tier_3.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -119,9 +114,8 @@
         <money min="1500" max="3500" infinitive="0"/>
         <visual>actors\stalker_dolg\stalker_dolggas_2</visual>
         <supplies>
-            [spawn] \n
-            wpn_ak74u=1 \n
-            ammo_5.45x39_fmj=1
+#include "gameplay\loadouts\dolg_base.ltx"
+#include "gameplay\loadouts\dolg_tier_4.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -140,9 +134,8 @@
         <money min="1500" max="3500" infinitive="0"/>
         <visual>actors\stalker_dolg\stalker_dolg_berill</visual>
         <supplies>
-            [spawn] \n
-            wpn_groza=1 \n
-            ammo_9x39_ap=1 \n
+#include "gameplay\loadouts\dolg_base.ltx"
+#include "gameplay\loadouts\dolg_tier_4.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -161,9 +154,8 @@
         <money min="1500" max="2500" infinitive="0"/>
         <visual>actors\stalker_freedom\stalker_freedom2a</visual>
         <supplies>
-            [spawn] \n
-            wpn_abakan=1 \n
-            ammo_5.45x39_fmj=1
+#include "gameplay\loadouts\freedom_base.ltx"
+#include "gameplay\loadouts\freedom_tier_3.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -182,9 +174,8 @@
         <money min="1500" max="2500" infinitive="0"/>
         <visual>actors\stalker_freedom\stalker_freedom_4</visual>
         <supplies>
-            [spawn] \n
-            wpn_l85=1 \n
-            ammo_5.56x45_fmj=1
+#include "gameplay\loadouts\freedom_base.ltx"
+#include "gameplay\loadouts\freedom_tier_3.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -203,9 +194,8 @@
         <money min="1500" max="2500" infinitive="0"/>
         <visual>actors\stalker_freedom\stalker_freedom2b_mask</visual>
         <supplies>
-            [spawn] \n
-            wpn_toz34=1 \n
-            ammo_12x70_buck=1
+#include "gameplay\loadouts\freedom_base.ltx"
+#include "gameplay\loadouts\freedom_tier_3.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -224,9 +214,8 @@
         <money min="1500" max="2500" infinitive="0"/>
         <visual>actors\stalker_freedom\dark_free</visual>
         <supplies>
-            [spawn] \n
-            wpn_lr300=1 \n
-            ammo_5.56x45_fmj=1
+#include "gameplay\loadouts\freedom_base.ltx"
+#include "gameplay\loadouts\freedom_tier_4.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -245,9 +234,8 @@
         <money min="1500" max="2500" infinitive="0"/>
         <visual>actors\stalker_freedom\stalker_freedom_4_proto</visual>
         <supplies>
-            [spawn] \n
-            wpn_sig550=1 \n
-            ammo_5.56x45_fmj=1
+#include "gameplay\loadouts\freedom_base.ltx"
+#include "gameplay\loadouts\freedom_tier_4.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -266,9 +254,8 @@
         <money min="1500" max="2500" infinitive="0"/>
         <visual>actors\stalker_merc\stalker_mercenary3</visual>
         <supplies>
-            [spawn] \n
-            wpn_g36=1 \n
-            ammo_5.56x45_ap=1
+#include "gameplay\loadouts\killer_base.ltx"
+#include "gameplay\loadouts\killer_tier_3.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -287,9 +274,8 @@
         <money min="1500" max="2500" infinitive="0"/>
         <visual>actors\stalker_soldier\stalker_soldier_3</visual>
         <supplies>
-            [spawn] \n
-            wpn_groza=1 \n
-            ammo_9x39_ap=1 \n
+#include "gameplay\loadouts\army_base.ltx"
+#include "gameplay\loadouts\army_tier_3.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -308,9 +294,8 @@
         <money min="1500" max="2500" infinitive="0"/>
         <visual>actors\stalker_renegade\stalker_renegade_4a</visual>
         <supplies>
-            [spawn] \n
-            wpn_toz34=1  \n
-            ammo_12x70_buck=1
+#include "gameplay\loadouts\bandit_base.ltx"
+#include "gameplay\loadouts\bandit_tier_3.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -329,9 +314,8 @@
         <money min="1500" max="2500" infinitive="0"/>
         <visual>actors\stalker_nebo\stalker_nebo_a</visual>
         <supplies>
-            [spawn] \n
-            wpn_toz34=1  \n
-            ammo_12x70_buck=1
+#include "gameplay\loadouts\csky_base.ltx"
+#include "gameplay\loadouts\csky_tier_3.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>
@@ -352,6 +336,86 @@
         <supplies>
 #include "gameplay\loadouts\monolith_base.ltx"
 #include "gameplay\loadouts\monolith_tier_3.ltx"
+        </supplies>
+#include "gameplay\character_criticals.xml"
+	</specific_character>
+
+	<specific_character id="mbo_arena_total_monolith_2" team_default="1">
+        <name>GENERATE_NAME_stalker</name>
+        <icon>ui_inGame2_stalker_bandit_skat</icon>
+        <map_icon x="1" y="0"></map_icon>
+        <bio>An experienced stalker. No detailed information is available.</bio>
+        <class>mbo_arena_total_monolith_2</class>
+        <community>monolith</community>
+        <terrain_sect>stalker_terrain</terrain_sect>
+        <snd_config>characters_voice\human\monolith_3\</snd_config>
+        <rank>1043</rank>
+        <reputation>1032</reputation>
+        <money min="1500" max="2500" infinitive="0"/>
+        <visual>actors\stalker_monolith\stalker_soldier_4_monolith</visual>
+        <supplies>
+#include "gameplay\loadouts\monolith_base.ltx"
+#include "gameplay\loadouts\monolith_tier_3.ltx"
+        </supplies>
+#include "gameplay\character_criticals.xml"
+	</specific_character>
+
+	<specific_character id="mbo_arena_total_monolith_3" team_default="1">
+        <name>GENERATE_NAME_stalker</name>
+        <icon>ui_inGame2_monolit_3</icon>
+        <map_icon x="1" y="0"></map_icon>
+        <bio>An experienced stalker. No detailed information is available.</bio>
+        <class>mbo_arena_total_monolith_3</class>
+        <community>monolith</community>
+        <terrain_sect>stalker_terrain</terrain_sect>
+        <snd_config>characters_voice\human\monolith_3\</snd_config>
+        <rank>1043</rank>
+        <reputation>1032</reputation>
+        <money min="1500" max="2500" infinitive="0"/>
+        <visual>actors\stalker_monolith\stalker_monolith3b</visual>
+        <supplies>
+#include "gameplay\loadouts\monolith_base.ltx"
+#include "gameplay\loadouts\monolith_tier_3.ltx"
+        </supplies>
+#include "gameplay\character_criticals.xml"
+	</specific_character>
+
+	<specific_character id="mbo_arena_total_monolith_4" team_default="1">
+        <name>GENERATE_NAME_stalker</name>
+        <icon>ui_inGame2_mono_old</icon>
+        <map_icon x="1" y="0"></map_icon>
+        <bio>An experienced stalker. No detailed information is available.</bio>
+        <class>mbo_arena_total_monolith_4</class>
+        <community>monolith</community>
+        <terrain_sect>stalker_terrain</terrain_sect>
+        <snd_config>characters_voice\human\monolith_3\</snd_config>
+        <rank>1043</rank>
+        <reputation>1032</reputation>
+        <money min="1500" max="2500" infinitive="0"/>
+        <visual>actors\stalker_monolith\stalker_monolith_2_old</visual>
+        <supplies>
+#include "gameplay\loadouts\monolith_base.ltx"
+#include "gameplay\loadouts\monolith_tier_4.ltx"
+        </supplies>
+#include "gameplay\character_criticals.xml"
+	</specific_character>
+
+	<specific_character id="mbo_arena_total_monolith_5" team_default="1">
+        <name>GENERATE_NAME_stalker</name>
+        <icon>ui_inGame2_monolit_1</icon>
+        <map_icon x="1" y="0"></map_icon>
+        <bio>An experienced stalker. No detailed information is available.</bio>
+        <class>mbo_arena_total_monolith_5</class>
+        <community>monolith</community>
+        <terrain_sect>stalker_terrain</terrain_sect>
+        <snd_config>characters_voice\human\monolith_3\</snd_config>
+        <rank>1043</rank>
+        <reputation>1032</reputation>
+        <money min="1500" max="2500" infinitive="0"/>
+        <visual>actors\stalker_monolith\stalker_monolith_nauchni3</visual>
+        <supplies>
+#include "gameplay\loadouts\monolith_base.ltx"
+#include "gameplay\loadouts\monolith_tier_4.ltx"
         </supplies>
 #include "gameplay\character_criticals.xml"
 	</specific_character>

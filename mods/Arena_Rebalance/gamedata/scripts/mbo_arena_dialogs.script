@@ -49,6 +49,69 @@ function update_dialogs_cache()
     end
 end
 
+-- !!!!!!!!!!!
+-- TOTALIZATOR
+-- Overriding arena totalizator for spectator items drop off in the box and enabling auto equip (mostly only binocle here)
+function teleport_for_totaliz(first_speaker, second_speaker)
+    if not has_alife_info("mbo_arena_totaliz_money_has_gone") then
+        return
+    end
+
+    local box = get_story_object("bar_arena_inventory_box")
+    if (box) then
+        local function transfer_object_item(item)
+            db.actor:transfer_item(item, box)
+        end
+        db.actor:inventory_for_each(transfer_object_item)
+        level.add_pp_effector("fade_in.ppe", 200, false)
+        db.actor:set_actor_position(vector():set(139.61517333984, -13.390427589417, 100.86038208008), 37564, 1710)
+    end
+
+    alife_create_item("wpn_binoc", db.actor)
+
+    mbo_arena_utils.inventory_auto_equip_for_arena()
+
+    mbo_arena_utils.make_actor_unkillable()
+end
+
+local function add_bet_to_storage(amount)
+    local bet_name = mbo_arena_dialogs.get_totaliz_current_bet()
+    if bet_name == nil then
+        print_dbg("Bet not found for reward, ignore")
+        return
+    end
+
+    mbo_arena_storage.update_active_bet({
+        name = bet_name,
+        amount = amount,
+    })
+end
+
+function take_totaliz_1(first_speaker, second_speaker)
+    local amount = 1000
+	dialogs.relocate_money_from_actor(first_speaker, second_speaker, amount)
+    mbo_arena_storage.update_non_grata_info(-amount)
+
+    add_bet_to_storage(amount)
+end
+
+function take_totaliz_2(first_speaker, second_speaker)
+    local amount = 2500
+	dialogs.relocate_money_from_actor(first_speaker, second_speaker, amount)
+    mbo_arena_storage.update_non_grata_info(-amount)
+
+    add_bet_to_storage(amount)
+end
+
+function take_totaliz_5(first_speaker, second_speaker)
+    local amount = 5000
+	dialogs.relocate_money_from_actor(first_speaker, second_speaker, amount)
+    mbo_arena_storage.update_non_grata_info(-amount)
+
+    add_bet_to_storage(amount)
+end
+
+
 -- Checked for non grata, if passed, kick actor and play some sound
 function totaliz_non_grata()
     return mbo_arena_storage.actor_is_non_grata()

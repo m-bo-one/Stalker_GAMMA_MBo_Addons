@@ -181,10 +181,10 @@ function generate_mbo_arena_bet_phrases_xml()
     <give_info>mbo_arena_begin_the_battle</give_info>
     <give_info>mbo_arena_totaliz_money_has_gone</give_info>
     <give_info>mbo_arena_totaliz_money_has_gone_1000</give_info>
-    <action>dialogs_mlr.take_totaliz_1</action>
+    <action>mbo_arena_dialogs.take_totaliz_1</action>
     <give_info>totaliz_begin_over_dialog</give_info>
     <disable_info>total_reward_over_dialog</disable_info>
-    <action>dialogs_mlr.teleport_for_totaliz</action>
+    <action>mbo_arena_dialogs.teleport_for_totaliz</action>
     <action>dialogs.break_dialog</action>
 </phrase>
 <phrase id="bet_2500">
@@ -193,10 +193,10 @@ function generate_mbo_arena_bet_phrases_xml()
     <give_info>mbo_arena_begin_the_battle</give_info>
     <give_info>mbo_arena_totaliz_money_has_gone</give_info>
     <give_info>mbo_arena_totaliz_money_has_gone_2500</give_info>
-    <action>dialogs_mlr.take_totaliz_2</action>
+    <action>mbo_arena_dialogs.take_totaliz_2</action>
     <give_info>totaliz_begin_over_dialog</give_info>
     <disable_info>total_reward_over_dialog</disable_info>
-    <action>dialogs_mlr.teleport_for_totaliz</action>
+    <action>mbo_arena_dialogs.teleport_for_totaliz</action>
     <action>dialogs.break_dialog</action>
 </phrase>
 <phrase id="bet_5000">
@@ -205,10 +205,10 @@ function generate_mbo_arena_bet_phrases_xml()
     <give_info>mbo_arena_begin_the_battle</give_info>
     <give_info>mbo_arena_totaliz_money_has_gone</give_info>
     <give_info>mbo_arena_totaliz_money_has_gone_5000</give_info>
-    <action>dialogs_mlr.take_totaliz_5</action>
+    <action>mbo_arena_dialogs.take_totaliz_5</action>
     <give_info>totaliz_begin_over_dialog</give_info>
     <disable_info>total_reward_over_dialog</disable_info>
-    <action>dialogs_mlr.teleport_for_totaliz</action>
+    <action>mbo_arena_dialogs.teleport_for_totaliz</action>
     <action>dialogs.break_dialog</action>
 </phrase>
 ]]

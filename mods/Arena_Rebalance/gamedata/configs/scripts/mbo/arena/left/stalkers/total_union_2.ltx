@@ -3,10 +3,10 @@ active = walker
 on_death = death
 
 [walker]
-path_walk = left_mlr_1_walk_3
+path_walk = left_mlr_1_walk_2
 path_look = mlr_all_point_look
 combat_ignore_cond = true
-on_info = walker@1 %=make_enemy_from_mbo_config(s_to_s:total_dolg_3) =make_actor_friend%
+on_info = walker@1 %=make_enemy_from_mbo_config(s_to_s:total_union_2) =make_actor_friend =mbo_arena_force_friends(union:left:2:5)%
 gather_items_enabled = false
 help_wounded_enabled = false
 corpse_detection_enabled = false
@@ -34,4 +34,4 @@ hp_fight        = 0|false
 hp_cover        = 0|false
 
 [death]
-on_info = %+mbo_arena_total_dolg_3_death +total_fight_is_over%
+on_info = %+mbo_arena_total_union_2_death%

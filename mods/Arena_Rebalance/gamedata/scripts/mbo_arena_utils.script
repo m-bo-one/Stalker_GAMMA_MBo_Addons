@@ -204,3 +204,25 @@ function print_dbg(text, ...)
 		printdbg("mbo_arena | %s | " .. text, time_global(), ...)
 	end
 end
+
+function make_actor_unkillable()
+    xrs_debug_tools.debug_god = true
+    xrs_debug_tools.debug_invis = true
+end
+
+function make_actor_killable()
+    xrs_debug_tools.debug_god = false
+    xrs_debug_tools.debug_invis = false
+end
+
+function generate_walk_index(length)
+    local sequence = {}
+    local currentIndex = 1
+
+    for i = 1, length do
+        sequence[i] = currentIndex
+        currentIndex = (currentIndex % 4) + 1
+    end
+
+    return sequence
+end

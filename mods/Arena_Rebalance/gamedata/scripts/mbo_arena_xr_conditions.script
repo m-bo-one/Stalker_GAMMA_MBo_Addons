@@ -1,0 +1,28 @@
+--[[
+Custom xr conditions patching
+Author: m-bo-one
+--]]
+
+-- imports
+local print_dbg = mbo_arena_utils.print_dbg
+
+function xr_conditions.totaliz_has_death(actor, npc, p)
+    local current_count = 0
+    local faction = p[1]
+    local should_have = tonumber(p[2] or "0")
+    if should_have == 0 or faction == nil then
+        return false
+    end
+
+    for i = 1, should_have do
+        if has_alife_info(string.format("mbo_arena_total_%s_%s_death", faction, i)) then
+            current_count = current_count + 1
+        end
+    end
+
+    print_dbg("faction: %s", faction)
+    print_dbg("current_count: %s", current_count)
+    print_dbg("should_have: %s", should_have)
+
+    return current_count == should_have
+end

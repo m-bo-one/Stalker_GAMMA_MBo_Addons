@@ -7,36 +7,47 @@ active = sr_idle@idle
 % 200 - mutants vs mutants
 
 ![sr_idle@idle]
-on_info1 =   {+mbo_arena_total_fight_stalker_vs_bandit +mbo_arena_totaliz_money_has_gone} sr_idle@teleport %=spawn_object(mbo_arena_left_total_stalker_1:left_mlr_1_walk_1:0) =spawn_object(mbo_arena_right_total_bandit_1:right_mlr_1_walk_1:0)%
-on_info2 =   {+mbo_arena_total_fight_dolg_vs_freedom +mbo_arena_totaliz_money_has_gone} sr_idle@teleport %=spawn_object(mbo_arena_left_total_dolg_1:left_mlr_1_walk_1:0) =spawn_object(mbo_arena_left_total_dolg_2:left_mlr_1_walk_2:0) =spawn_object(mbo_arena_left_total_dolg_3:left_mlr_1_walk_3:0) =spawn_object(mbo_arena_left_total_dolg_4:left_mlr_1_walk_4:0) =spawn_object(mbo_arena_left_total_dolg_5:left_mlr_1_walk_3:0) =spawn_object(mbo_arena_right_total_freedom_1:right_mlr_1_walk_1:0) =spawn_object(mbo_arena_right_total_freedom_2:right_mlr_1_walk_2:0) =spawn_object(mbo_arena_right_total_freedom_3:right_mlr_1_walk_3:0) =spawn_object(mbo_arena_right_total_freedom_4:right_mlr_1_walk_4:0) =spawn_object(mbo_arena_right_total_freedom_5:right_mlr_1_walk_3:0)%
-on_info3 =   {+mbo_arena_total_fight_killer_vs_army +mbo_arena_totaliz_money_has_gone} sr_idle@teleport %=spawn_object(mbo_arena_left_total_killer_1:left_mlr_1_walk_1:0) =spawn_object(mbo_arena_right_total_army_1:right_mlr_1_walk_1:0)%
-on_info4 =   {+mbo_arena_total_fight_renegade_vs_csky +mbo_arena_totaliz_money_has_gone} sr_idle@teleport %=spawn_object(mbo_arena_left_total_renegade_1:left_mlr_1_walk_1:0) =spawn_object(mbo_arena_right_total_csky_1:right_mlr_1_walk_1:0)%
-on_info5 =   {+mbo_arena_total_fight_union_vs_monolith +mbo_arena_totaliz_money_has_gone} sr_idle@teleport %=spawn_object(mbo_arena_left_total_stalker_1:left_mlr_1_walk_1:0) =spawn_object(mbo_arena_right_total_monolith_1:right_mlr_1_walk_1:0)%
+on_info1 =   {+mbo_arena_total_fight_stalker_vs_bandit +mbo_arena_totaliz_money_has_gone}  sr_idle@teleport %=mbo_arena_spawn_objects(stalker:bandit)%
+on_info2 =   {+mbo_arena_total_fight_dolg_vs_freedom +mbo_arena_totaliz_money_has_gone}    sr_idle@teleport %=mbo_arena_spawn_objects(dolg:freedom)%
+on_info3 =   {+mbo_arena_total_fight_killer_vs_army +mbo_arena_totaliz_money_has_gone}     sr_idle@teleport %=mbo_arena_spawn_objects(killer:army)%
+on_info4 =   {+mbo_arena_total_fight_renegade_vs_csky +mbo_arena_totaliz_money_has_gone}   sr_idle@teleport %=mbo_arena_spawn_objects(renegade:csky)%
+on_info5 =   {+mbo_arena_total_fight_union_vs_monolith +mbo_arena_totaliz_money_has_gone}  sr_idle@teleport %=mbo_arena_spawn_objects(union:monolith)%
 
-on_info200 = {+mbo_arena_total_fight_giant_vs_chimera +mbo_arena_totaliz_money_has_gone} sr_idle@teleport %=spawn_object(mbo_arena_left_total_giant_1:left_mlr_1_walk_1:0) =spawn_object(mbo_arena_right_total_chimera_1:right_mlr_1_walk_1:0)%
-on_info201 = {+mbo_arena_total_fight_pseudodog_vs_boar +mbo_arena_totaliz_money_has_gone} sr_idle@teleport %=spawn_object(mbo_arena_left_total_pseudodog_1:left_mlr_1_walk_1:0) =spawn_object(mbo_arena_right_total_boar_1:right_mlr_1_walk_1:0)%
-on_info202 = {+mbo_arena_total_fight_cat_vs_dog +mbo_arena_totaliz_money_has_gone} sr_idle@teleport %=spawn_object(mbo_arena_left_total_cat_1:left_mlr_1_walk_1:0) =spawn_object(mbo_arena_left_total_cat_2:left_mlr_1_walk_2:0) =spawn_object(mbo_arena_left_total_cat_3:left_mlr_1_walk_3:0) =spawn_object(mbo_arena_right_total_dog_1:right_mlr_1_walk_1:0) =spawn_object(mbo_arena_right_total_dog_2:right_mlr_1_walk_2:0) =spawn_object(mbo_arena_right_total_dog_3:right_mlr_1_walk_3:0)%
+on_info100 = {+mbo_arena_total_fight_cat_vs_army +mbo_arena_totaliz_money_has_gone}        sr_idle@teleport %=mbo_arena_spawn_objects(cat:army)%
+on_info101 = {+mbo_arena_total_fight_stalker_vs_dog +mbo_arena_totaliz_money_has_gone}     sr_idle@teleport %=mbo_arena_spawn_objects(stalker:dog)%
+on_info102 = {+mbo_arena_total_fight_dolg_vs_chimera +mbo_arena_totaliz_money_has_gone}    sr_idle@teleport %=mbo_arena_spawn_objects(dolg:chimera)%
+
+on_info200 = {+mbo_arena_total_fight_giant_vs_chimera +mbo_arena_totaliz_money_has_gone}   sr_idle@teleport %=mbo_arena_spawn_objects(giant:chimera)%
+on_info201 = {+mbo_arena_total_fight_pseudodog_vs_boar +mbo_arena_totaliz_money_has_gone}  sr_idle@teleport %=mbo_arena_spawn_objects(pseudodog:boar)%
+on_info202 = {+mbo_arena_total_fight_cat_vs_dog +mbo_arena_totaliz_money_has_gone}         sr_idle@teleport %=mbo_arena_spawn_objects(cat:dog)%
 
 ![sr_idle@teleport]
 on_info  =   {+mbo_arena_total_fight_is_over} sr_idle@timer
 
-on_info1 =   {+mbo_arena_total_fight_stalker_vs_bandit +mbo_arena_total_stalker_1_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_bandit_done%
-on_info2 =   {+mbo_arena_total_fight_stalker_vs_bandit +mbo_arena_total_bandit_1_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_stalker_done%
-on_info3 =   {+mbo_arena_total_fight_dolg_vs_freedom +mbo_arena_total_dolg_1_death +mbo_arena_total_dolg_2_death +mbo_arena_total_dolg_3_death +mbo_arena_total_dolg_4_death +mbo_arena_total_dolg_5_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_freedom_done%
-on_info4 =   {+mbo_arena_total_fight_dolg_vs_freedom +mbo_arena_total_freedom_1_death +mbo_arena_total_freedom_2_death +mbo_arena_total_freedom_3_death +mbo_arena_total_freedom_4_death +mbo_arena_total_freedom_5_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_dolg_done%
-on_info5 =   {+mbo_arena_total_fight_killer_vs_army +mbo_arena_total_killer_1_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_army_done%
-on_info6 =   {+mbo_arena_total_fight_killer_vs_army +mbo_arena_total_army_1_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_killer_done%
-on_info7 =   {+mbo_arena_total_fight_renegade_vs_csky +mbo_arena_total_renegade_1_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_csky_done%
-on_info8 =   {+mbo_arena_total_fight_renegade_vs_csky +mbo_arena_total_csky_1_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_renegade_done%
-on_info9 =   {+mbo_arena_total_fight_union_vs_monolith +mbo_arena_total_stalker_1_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_monolith_done%
-on_info10 =  {+mbo_arena_total_fight_union_vs_monolith +mbo_arena_total_monolith_1_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_union_done%
+on_info1 =   {+mbo_arena_total_fight_stalker_vs_bandit =totaliz_has_death(stalker:1)}      sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_bandit_done%
+on_info2 =   {+mbo_arena_total_fight_stalker_vs_bandit =totaliz_has_death(bandit:1)}       sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_stalker_done%
+on_info3 =   {+mbo_arena_total_fight_dolg_vs_freedom =totaliz_has_death(dolg:5)}           sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_freedom_done%
+on_info4 =   {+mbo_arena_total_fight_dolg_vs_freedom =totaliz_has_death(freedom:5)}        sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_dolg_done%
+on_info5 =   {+mbo_arena_total_fight_killer_vs_army =totaliz_has_death(killer:1)}          sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_army_done%
+on_info6 =   {+mbo_arena_total_fight_killer_vs_army =totaliz_has_death(army:1)}            sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_killer_done%
+on_info7 =   {+mbo_arena_total_fight_renegade_vs_csky =totaliz_has_death(renegade:1)}      sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_csky_done%
+on_info8 =   {+mbo_arena_total_fight_renegade_vs_csky =totaliz_has_death(csky:1)}          sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_renegade_done%
+on_info9 =   {+mbo_arena_total_fight_union_vs_monolith =totaliz_has_death(union:5)}        sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_monolith_done%
+on_info10 =  {+mbo_arena_total_fight_union_vs_monolith =totaliz_has_death(monolith:5)}     sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_union_done%
 
-on_info200 = {+mbo_arena_total_fight_giant_vs_chimera +mbo_arena_total_giant_1_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_chimera_done%
-on_info201 = {+mbo_arena_total_fight_giant_vs_chimera +mbo_arena_total_chimera_1_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_giant_done%
-on_info202 = {+mbo_arena_total_fight_pseudodog_vs_boar +mbo_arena_total_pseudodog_1_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_boar_done%
-on_info203 = {+mbo_arena_total_fight_pseudodog_vs_boar +mbo_arena_total_boar_1_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_pseudodog_done%
-on_info204 = {+mbo_arena_total_fight_cat_vs_dog +mbo_arena_total_cat_1_death +mbo_arena_total_cat_2_death +mbo_arena_total_cat_3_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_dog_done%
-on_info205 = {+mbo_arena_total_fight_cat_vs_dog +mbo_arena_total_dog_1_death +mbo_arena_total_dog_2_death +mbo_arena_total_dog_3_death} sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_cat_done%
+on_info100 = {+mbo_arena_total_fight_cat_vs_army =totaliz_has_death(army:1)}               sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_cat_done%
+on_info101 = {+mbo_arena_total_fight_cat_vs_army =totaliz_has_death(cat:2)}                sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_army_done%
+on_info102 = {+mbo_arena_total_fight_stalker_vs_dog =totaliz_has_death(dog:2)}             sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_stalker_done%
+on_info103 = {+mbo_arena_total_fight_stalker_vs_dog =totaliz_has_death(stalker:1)}         sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_dog_done%
+on_info102 = {+mbo_arena_total_fight_dolg_vs_chimera =totaliz_has_death(chimera:1)}        sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_dolg_done%
+on_info103 = {+mbo_arena_total_fight_dolg_vs_chimera =totaliz_has_death(dolg:3)}           sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_chimera_done%
+
+on_info200 = {+mbo_arena_total_fight_giant_vs_chimera =totaliz_has_death(giant:1)}         sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_chimera_done%
+on_info201 = {+mbo_arena_total_fight_giant_vs_chimera =totaliz_has_death(chimera:1)}       sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_giant_done%
+on_info202 = {+mbo_arena_total_fight_pseudodog_vs_boar =totaliz_has_death(pseudodog:1)}    sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_boar_done%
+on_info203 = {+mbo_arena_total_fight_pseudodog_vs_boar =totaliz_has_death(boar:1)}         sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_pseudodog_done%
+on_info204 = {+mbo_arena_total_fight_cat_vs_dog =totaliz_has_death(cat:3)}                 sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_dog_done%
+on_info205 = {+mbo_arena_total_fight_cat_vs_dog =totaliz_has_death(dog:3)}                 sr_idle@timer %+mbo_arena_total_fight_is_over +mbo_arena_total_cat_done%
 
 ![sr_idle@timer]
 on_timer = 1500 | sr_idle@over %=teleport_for_totaliz_out -mbo_arena_begin_the_battle +mbo_arena_remove_is_reload%
